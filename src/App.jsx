@@ -123,13 +123,6 @@ function Hero() {
         <div className="wd" style={{ transform: `translate(${-pos.x * 46}px,${-pos.y * 14}px)` }}>
           <div className="word" key={word}>{word}</div>
         </div>
-        <div className="pw" style={{ transform: `translate(${pos.x * 34}px,${pos.y * 22}px)` }}>
-          <div className="pic">
-            {/* ONE robot for all products: public/robot.png + public/robot-eyes.png */}
-            <img className="rb" src="/robot.png" alt="" />
-            <img className="eyes" src="/robot-eyes.png" alt="" />
-          </div>
-        </div>
         <ul className="plist">
           {TH.map((t, k) => (
             <li key={t[3]}>
