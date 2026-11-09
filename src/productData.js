@@ -14,7 +14,7 @@ export const PD = {
     head: "Run the whole business from one screen",
     what: [
       "An ERP (Enterprise Resource Planning) system connects every department of your company to one shared database. When sales raises an order, stock is reserved, purchasing is alerted, accounts is updated and the warehouse sees what to ship - without anyone retyping the same data in four different places.",
-      "AR Mostech ERP is built for growing businesses that have outgrown spreadsheets and separate tools. You switch on only the modules you need today and add more as you grow.",
+      "Mosbee ERP is built for growing businesses that have outgrown spreadsheets and separate tools. You switch on only the modules you need today and add more as you grow.",
     ],
     fixes: [
       ["Stock numbers in Excel never match the shelf", "Live inventory that updates on every purchase, sale and transfer"],
@@ -59,7 +59,7 @@ export const PD = {
     head: "Manage your people without the paperwork",
     what: [
       "An HRMS (Human Resource Management System) keeps everything about your employees - joining details, attendance, leave, salary and performance - in one secure place. Instead of registers, spreadsheets and chasing messages, HR works from a single system and employees help themselves.",
-      "AR Mostech HRMS covers the full journey of an employee, from the first interview to the final settlement, and calculates payroll from real attendance and leave data.",
+      "Mosbee HRMS covers the full journey of an employee, from the first interview to the final settlement, and calculates payroll from real attendance and leave data.",
     ],
     fixes: [
       ["Attendance is marked on paper and totalled by hand", "Digital attendance feeds straight into payroll"],
@@ -104,7 +104,7 @@ export const PD = {
     head: "Books that stay accurate and always ready",
     what: [
       "Accounting software records every rupee that comes in and goes out, and turns it into invoices, ledgers, statements and tax reports. It replaces the spreadsheets, notebooks and last-minute month-end rush with books that are up to date every day.",
-      "AR Mostech Accounting is made for business owners and accountants who want correct figures, clear receivable and payable tracking, and tax reports they can file without rebuilding the data.",
+      "Mosbee Accounting is made for business owners and accountants who want correct figures, clear receivable and payable tracking, and tax reports they can file without rebuilding the data.",
     ],
     fixes: [
       ["Invoices are made in Word or Excel and numbered by hand", "Professional invoices with automatic numbering and tax"],
@@ -149,7 +149,7 @@ export const PD = {
     head: "A team member that answers at 3 a.m.",
     what: [
       "A chatbot is an automated assistant that talks to your customers on your website or messaging apps. It answers common questions instantly, collects contact details, and hands the conversation to a person when a human touch is needed.",
-      "AR Mostech Chatbot is trained on your own business information - services, prices, policies and FAQs - so it replies in your tone with answers that are actually about your company.",
+      "Mosbee Chatbot is trained on your own business information - services, prices, policies and FAQs - so it replies in your tone with answers that are actually about your company.",
     ],
     fixes: [
       ["Visitors leave because nobody replies after office hours", "Instant replies, day and night"],
@@ -194,7 +194,7 @@ export const PD = {
     head: "Deliver projects on time, every time",
     what: [
       "Project management software gives everyone on a project the same plan: what has to be done, by whom, by when and how far along it is. Managers see problems early, and teams stop wasting time in status meetings.",
-      "AR Mostech Project Management helps you break large work into phases, assign responsibility, watch deadlines and share progress with clients and management in clear reports.",
+      "Mosbee Project Management helps you break large work into phases, assign responsibility, watch deadlines and share progress with clients and management in clear reports.",
     ],
     fixes: [
       ["Deadlines slip and nobody noticed until too late", "Timelines with warnings when work is falling behind"],
@@ -239,7 +239,7 @@ export const PD = {
     head: "Know what to do today, and see it done",
     what: [
       "Task management software gives every person a clear list of what is assigned to them, what is urgent and what is due. Managers assign work in seconds and see who has finished what, without calling or messaging.",
-      "AR Mostech Task Management is lightweight and quick to adopt. It suits daily work where people need simplicity: assign, remind, follow up and close.",
+      "Mosbee Task Management is lightweight and quick to adopt. It suits daily work where people need simplicity: assign, remind, follow up and close.",
     ],
     fixes: [
       ["Tasks are given on calls and forgotten", "Every task is written, assigned and dated"],

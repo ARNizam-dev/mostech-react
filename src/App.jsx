@@ -80,8 +80,8 @@ function Header() {
   return (
     <>
       <header><div className="wrap bar">
-        {/* Replace with: <img src="/logo.png" alt="AR Mostech" height="40" /> */}
-        <Link className="logo" to="/"><i>M</i>AR MOSTECH</Link>
+        {/* Replace with: <img src="/logo.png" alt="Mosbee" height="40" /> */}
+        <Link className="logo" to="/"><i>M</i>MOSBEE</Link>
         <button className="burger" aria-expanded={menu} onClick={() => setMenu(!menu)}>Menu</button>
         <nav className={menu ? "show" : ""}>
           <NavLink className={cn("l")} to="/" end>Home</NavLink>
@@ -111,13 +111,13 @@ function Hero() {
     const t = setInterval(() => setI((n) => (n + 1) % TH.length), 4000);
     return () => clearInterval(t);
   }, [i]);
-  const [word, c1, c2, id] = TH[i];
+  const [word, c1, c2, id, , fg, rot] = TH[i];
   const move = (e) => {
     const r = e.currentTarget.getBoundingClientRect();
     setPos({ x: (e.clientX - r.left) / r.width - 0.5, y: (e.clientY - r.top) / r.height - 0.5 });
   };
   return (
-    <section className="shoe" style={{ "--c1": c1, "--c2": c2, "--rot": `${Math.round(hueOf(c2) - 208)}deg` }} onMouseMove={move}>
+    <section className="shoe" style={{ "--c1": c1, "--c2": c2, "--fg": fg, "--rot": `${rot}deg` }} onMouseMove={move}>
       <div className="sw">
         <div className="stx"><h1>Software that handles the busywork.</h1><p>{P[i].tag}</p></div>
         <div className="wd" style={{ transform: `translate(${-pos.x * 46}px,${-pos.y * 14}px)` }}>
@@ -252,8 +252,8 @@ const Home = () => (
     <section className="sec alt wy"><div className="wrap">
       <div className="wy-top">
         <div>
-          <span className="tag">Why AR Mostech</span>
-          <h2>Why choose AR Mostech</h2>
+          <span className="tag">Why Mosbee</span>
+          <h2>Why choose Mosbee</h2>
           <p className="sub" style={{ margin: 0 }}>Technology that is simple to use, quick to set up and backed by people who stay with you after launch.</p>
         </div>
         <div className="wy-stats">{STATS.map((x) => <div key={x[2]}><b>{x[1]}</b><span>{x[2]}</span></div>)}</div>
@@ -333,7 +333,7 @@ const spot = (e) => {
 };
 
 const CODE = [
-  ["company", "\"AR Mostech\""],
+  ["company", "\"Mosbee\""],
   ["focus", "[\"AI\", \"Software\", \"Digital\"]"],
   ["products", "7"],
   ["clients", "1,000+"],
@@ -372,7 +372,7 @@ const About = () => {
             {STORY.map((t, k) => <Rv d={0.1 * (k + 1)} key={t}><p className="sub" style={{ margin: "0 0 14px" }}>{t}</p></Rv>)}
           </div>
           <div ref={termRef} className={"ab2-term" + (termSeen ? " go" : "")}>
-            <div className="ab2-tb"><i /><i /><i /><span>ar-mostech.config</span></div>
+            <div className="ab2-tb"><i /><i /><i /><span>mosbee.config</span></div>
             <div className="ab2-code">
               {CODE.map(([k, v], i) => (
                 <div key={k} style={{ "--i": i, "--n": 15 + v.length }}>
@@ -473,7 +473,7 @@ function Contact() {
       setBusy(false);
     }
   };
-  const waText = encodeURIComponent("Hello AR Mostech, I would like to know more about " + (sent ? sent.s : "your services") + ".");
+  const waText = encodeURIComponent("Hello Mosbee, I would like to know more about " + (sent ? sent.s : "your services") + ".");
   return (
     <>
       <PageHead crumb="Contact us" title="Contact us" lead={"Call " + PHONE + " or send us a message."} />
@@ -512,7 +512,7 @@ const Footer = () => (
   <footer><div className="wrap">
     <div className="fg">
       <div>
-        <Link className="ft-logo" to="/"><i>M</i>AR MOSTECH</Link>
+        <Link className="ft-logo" to="/"><i>M</i>MOSBEE</Link>
         <p>{ABOUT}</p>
       </div>
       <div><h4>Company</h4><Link to="/">Home</Link><Link to="/about">About us</Link><Link to="/services">Our services</Link><Link to="/contact">Contact us</Link></div>
@@ -520,7 +520,7 @@ const Footer = () => (
       <div><h4>Contact</h4><a href="tel:+918891904007">+91 8891904007</a><a href="mailto:info@mostech.ae">info@mostech.ae</a></div>
     </div>
     <div className="copy">
-      <span>© AR Mostech. All rights reserved.</span>
+      <span>© Mosbee. All rights reserved.</span>
       <button className="ft-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top ↑</button>
     </div>
   </div></footer>

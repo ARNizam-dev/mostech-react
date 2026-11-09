@@ -1,17 +1,17 @@
 // EDIT CONTENT HERE
-export const ABOUT = "AR Mostech delivers cutting-edge AI, software and digital solutions designed to automate, optimize and accelerate your business growth.";
+export const ABOUT = "Mosbee delivers cutting-edge AI, software and digital solutions designed to automate, optimize and accelerate your business growth.";
 
 export const SERVICES = [
-  { id: "ai-solutions", name: "AI Solutions", icon: "✦", c: "#3d9bff",
+  { id: "ai-solutions", name: "AI Solutions", icon: "✦", c: "#0b46d6",
     d: "Chatbots, automation and smart assistants that take repetitive work off your team and answer customers around the clock.",
     pts: ["Chatbots and assistants", "Workflow automation", "Document and data processing"] },
-  { id: "software-development", name: "Software Development", icon: "⌨", c: "#a64dff",
+  { id: "software-development", name: "Software Development", icon: "⌨", c: "#07308f",
     d: "Business software such as ERP, HRMS and accounting, built around the way your company actually works.",
     pts: ["Custom ERP and HRMS", "Integrations and APIs", "Maintenance and support"] },
-  { id: "web-and-app", name: "Web and App Development", icon: "▤", c: "#00ffc6",
+  { id: "web-and-app", name: "Web and App Development", icon: "▤", c: "#0b46d6",
     d: "Fast, modern websites, web apps and mobile apps that look sharp on every screen and are easy to manage.",
     pts: ["Business websites", "Web applications", "Android and iOS apps"] },
-  { id: "digital-solutions", name: "Digital Solutions", icon: "◎", c: "#ffb000",
+  { id: "digital-solutions", name: "Digital Solutions", icon: "◎", c: "#07308f",
     d: "Practical digital tools that move your business online: portals, dashboards, online payments and reporting.",
     pts: ["Customer and partner portals", "Dashboards and reports", "Payments and messaging"] },
 ];
@@ -27,15 +27,16 @@ export const P = [
   { id: "pro-solutions", name: "Pro Solutions", icon: "★", tag: "Custom software built around your business.", f: ["Custom build", "Integrations", "Maintenance"] },
 ];
 
-// [big word behind the photo, dark colour, neon colour, product id, short name for the right-side list]
+// [big word, hero background, word/accent colour, product id, list name, text colour, robot hue shift]
+// Professional look: one brand blue background, yellow accent, white text
 export const TH = [
-  ["ERP", "#031a6b", "#00b4ff", "erp", "ERP"],
-  ["HRMS", "#2a0a6b", "#a64dff", "hrms", "HRMS"],
-  ["ACCOUNTS", "#04574a", "#00ffc6", "accounting", "Accounting"],
-  ["CHATBOT", "#6b0a4a", "#ff3ec9", "chatbot", "Chatbot"],
-  ["PROJECTS", "#7a2a00", "#ffb000", "project-management", "Project Mgmt"],
-  ["TASKS", "#004d73", "#3df5ff", "task-management", "Task Mgmt"],
-  ["PRO", "#1c4a00", "#9dff3d", "pro-solutions", "Pro Solutions"],
+  ["ERP", "#0b46d6", "#ffc800", "erp", "ERP", "#ffffff", -148],
+  ["HRMS", "#0a3fc4", "#ffc800", "hrms", "HRMS", "#ffffff", -148],
+  ["ACCOUNTS", "#0b46d6", "#ffc800", "accounting", "Accounting", "#ffffff", -148],
+  ["CHATBOT", "#0a3fc4", "#ffc800", "chatbot", "Chatbot", "#ffffff", -148],
+  ["PROJECTS", "#0b46d6", "#ffc800", "project-management", "Project Mgmt", "#ffffff", -148],
+  ["TASKS", "#0a3fc4", "#ffc800", "task-management", "Task Mgmt", "#ffffff", -148],
+  ["PRO", "#0b46d6", "#ffc800", "pro-solutions", "Pro Solutions", "#ffffff", -148],
 ];
 
 export const STATS = [["🌐", "25+", "Countries Served"], ["▦", "7", "Ready-to-use Products"], ["👥", "1,000+", "Clients Served"], ["📄", "10,000+", "Projects Completed"]];
@@ -48,7 +49,7 @@ export const WHY = [
 ];
 // ABOUT PAGE CONTENT - edit the text freely
 export const STORY = [
-  "AR Mostech builds AI, software and digital solutions that help businesses automate daily work and grow.",
+  "Mosbee builds AI, software and digital solutions that help businesses automate daily work and grow.",
   "With 1,000+ clients in 25+ countries, we make technology simple, reliable and useful.",
 ];
 export const ABOUT_HOME = {
