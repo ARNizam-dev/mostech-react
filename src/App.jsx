@@ -122,14 +122,58 @@ const HI_CSS = `
 .hi-tabs button:hover,.hi-tabs button.on{border-color:var(--hb);color:var(--hb);background:var(--hs)}
 
 /* dashboard image in the middle */
-.hi-demo{margin:36px auto 0;max-width:1040px;background:#fff;border:1px solid var(--hl);border-radius:18px;box-shadow:0 30px 80px rgba(11,70,214,.18);overflow:hidden}
-.hi-shot{position:relative;aspect-ratio:16/8.6;background:linear-gradient(180deg,#f7f9ff,#eaf0ff);display:grid;place-items:center}
-.hi-shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;animation:hifade .5s ease}
+.hi-demo{margin:36px auto 0;max-width:940px;background:#fff;border:1px solid var(--hl);border-radius:18px;box-shadow:0 30px 80px rgba(11,70,214,.18);overflow:hidden}
+.hi-shot{position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 50% 40%,#ffffff,#eaf3ff 75%);display:grid;place-items:center}
+.hi-shot img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;animation:hifade .5s ease}
 .hi-ph{width:86%;display:grid;grid-template-columns:1fr 2fr;gap:14px}
 .hi-ph div{background:#fff;border:1px solid var(--hl);border-radius:12px;height:110px}
 .hi-ph div:nth-child(2){grid-row:span 2;height:auto}
 .hi-ph span{position:absolute;right:18px;bottom:14px;font-size:12px;color:var(--hm);background:#fff;border:1px solid var(--hl);padding:4px 10px;border-radius:999px}
 
+/* hero stage: one big image in the middle, soft glass cards on both sides, blue grid floor */
+.hi-stage{position:relative;overflow-x:clip;overflow-y:visible;width:100vw;margin:40px 0 0 calc(50% - 50vw);height:clamp(320px,46vw,640px);background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,224,200,.30) 18%,rgba(186,214,255,.55) 58%,rgba(120,176,255,.85) 100%)}
+.hi-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);z-index:4;pointer-events:none}
+.hi-floor{position:absolute;left:-10%;right:-10%;bottom:0;height:50%;perspective:560px;overflow:hidden;background:linear-gradient(180deg,rgba(120,176,255,0),rgba(90,160,255,.55))}
+.hi-floor::before{content:"";position:absolute;left:0;right:0;top:-30%;bottom:0;background-image:linear-gradient(rgba(255,255,255,.6) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.6) 1.5px,transparent 1.5px);background-size:72px 72px;transform:rotateX(62deg);transform-origin:50% 100%}
+.hi-main{position:absolute;left:50%;top:7%;width:min(62%,900px);aspect-ratio:16/9.6;transform:translateX(-50%) perspective(1800px) rotateX(3deg);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(11,70,214,.30),0 0 0 6px rgba(255,255,255,.55);z-index:3}
+.hi-main img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;animation:hifade .5s ease}
+.hi-main .hi-ph{width:100%;height:100%;padding:6%;box-sizing:border-box;align-content:center;background:linear-gradient(180deg,#f7f9ff,#eaf0ff)}
+.hi-sc{position:absolute;top:22%;width:12.5%;height:56%;border-radius:20px;padding:clamp(12px,1.5vw,24px);text-align:left;display:flex;flex-direction:column;gap:8px;z-index:2;background:linear-gradient(165deg,rgba(255,255,255,.85),rgba(255,255,255,.35));border:1px solid rgba(255,255,255,.9);box-shadow:0 20px 50px rgba(47,107,255,.16);backdrop-filter:blur(6px);animation:hifade .6s ease}
+.hi-sc small{font-size:clamp(11px,1vw,15px);color:#5b6482;line-height:1.3}
+.hi-sc b{font:800 clamp(18px,2vw,32px)/1.1 "Sora",sans-serif;color:#0a1a4a;letter-spacing:-.01em}
+.hi-sc{overflow:hidden;justify-content:center}
+.hi-sc>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.hi-sc:has(>img)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 40%,rgba(120,176,255,.30));pointer-events:none}
+.hi-sci{font-style:normal;font-size:clamp(30px,4vw,64px);line-height:1;opacity:.55;margin-bottom:6px}
+.hi-sc0{left:-6%;--ry:18deg;--op:.7;transform:perspective(900px) rotateY(var(--ry));opacity:.7}
+.hi-sc1{left:5.5%;--ry:14deg;--op:1;transform:perspective(900px) rotateY(var(--ry))}
+.hi-sc2{right:5.5%;--ry:-14deg;--op:1;transform:perspective(900px) rotateY(var(--ry))}
+.hi-sc3{right:-6%;--ry:-18deg;--op:.7;transform:perspective(900px) rotateY(var(--ry));opacity:.7}
+/* hero animation */
+.hi-main{animation:hiMainIn 1s cubic-bezier(.2,.8,.2,1) both,hiMainFloat 7s ease-in-out 1s infinite}
+@keyframes hiMainIn{from{opacity:0;transform:translateX(-50%) translateY(60px) perspective(1800px) rotateX(10deg) scale(.94)}to{opacity:1;transform:translateX(-50%) perspective(1800px) rotateX(3deg)}}
+@keyframes hiMainFloat{0%,100%{transform:translateX(-50%) translateY(0) perspective(1800px) rotateX(3deg)}50%{transform:translateX(-50%) translateY(-14px) perspective(1800px) rotateX(1.5deg)}}
+.hi-main::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.6) 50%,transparent 64%);transform:translateX(-130%);animation:hiShine 6s ease-in-out 2s infinite;pointer-events:none}
+@keyframes hiShine{0%{transform:translateX(-130%)}35%,100%{transform:translateX(130%)}}
+.hi-sc0,.hi-sc1{animation:hiSideL .9s ease-out .15s both,hiFloatS 6s ease-in-out 1.1s infinite}
+.hi-sc2,.hi-sc3{animation:hiSideR .9s ease-out .15s both,hiFloatS 6.5s ease-in-out 1.1s infinite reverse}
+.hi-sc1{animation-duration:.9s,7.5s}
+.hi-sc3{animation-duration:.9s,8s}
+@keyframes hiSideL{from{opacity:0;transform:perspective(900px) rotateY(var(--ry)) translateX(-90px)}to{opacity:var(--op);transform:perspective(900px) rotateY(var(--ry))}}
+@keyframes hiSideR{from{opacity:0;transform:perspective(900px) rotateY(var(--ry)) translateX(90px)}to{opacity:var(--op);transform:perspective(900px) rotateY(var(--ry))}}
+@keyframes hiFloatS{0%,100%{transform:perspective(900px) rotateY(var(--ry)) translateY(0)}50%{transform:perspective(900px) rotateY(var(--ry)) translateY(-16px)}}
+.hi-floor::before{animation:hiGrid 2.4s linear infinite}
+@keyframes hiGrid{from{background-position:0 0}to{background-position:0 72px}}
+.hi-hero>*:not(.hi-stage){position:relative;z-index:5}
+.hi-orb{position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none}
+.hi-orb1{width:560px;height:560px;left:0;top:-95%;background:rgba(255,196,120,.45);animation:hiDrift1 14s ease-in-out infinite alternate}
+.hi-orb2{width:600px;height:600px;right:0;top:-70%;background:rgba(80,140,255,.40);animation:hiDrift2 16s ease-in-out infinite alternate}
+.hi-orb3{width:360px;height:360px;left:38%;bottom:-18%;background:rgba(124,77,255,.25);animation:hiDrift1 18s ease-in-out infinite alternate-reverse}
+@keyframes hiDrift1{from{transform:translate(0,0) scale(1)}to{transform:translate(90px,40px) scale(1.15)}}
+@keyframes hiDrift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-100px,50px) scale(1.1)}}
+.hi-dot{position:absolute;bottom:-10px;left:var(--x);width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.95);box-shadow:0 0 12px rgba(80,140,255,.7);pointer-events:none;z-index:1;animation:hiRise var(--d,9s) linear var(--dl,0s) infinite}
+@keyframes hiRise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translateY(-520px) scale(1.1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.hi-main,.hi-main::after,.hi-sc,.hi-orb,.hi-dot,.hi-floor::before{animation:none!important}}
 /* content block */
 .hi-copy{max-width:1100px;margin:0 auto;padding-top:100px}
 .hi-copy p{font-size:18px;line-height:1.85;color:var(--hm);margin:0 0 20px}
@@ -150,43 +194,61 @@ const HI_CSS = `
 .hi .hi-whoC h3{margin:14px 0 12px;font-size:clamp(22px,2.2vw,28px);line-height:1.25;color:#fff;font-weight:700}
 .hi-whoC p{margin:0 0 10px;font-size:16px;line-height:1.7;color:#c9d6f5}
 .hi-sm{padding:11px 22px;font-size:15px;margin-top:10px}
+.hi-side{min-width:0}
+.hi .hi-side h3{font-size:clamp(24px,2.4vw,32px);line-height:1.2;color:var(--hn);margin:16px 0 12px;font-weight:800;letter-spacing:-.01em}
+.hi-side p{font-size:16px;line-height:1.75;color:var(--hm);margin:0 0 16px}
+.hi-side ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
+.hi-side li{display:flex;gap:12px;align-items:center;font-size:16px;color:#1c2340}
+.hi-side li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--hb);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
+.hi-call{font-weight:700;color:var(--hb);text-decoration:none;font-size:16px}
 /* hexagons + form */
-.hi-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-top:100px;padding-bottom:0}
-.hi-hexbox{background:#0b0b0d;border-radius:24px;padding:36px 20px 40px;box-shadow:0 30px 70px rgba(10,26,74,.28)}
-.hi-hexrow{display:flex;justify-content:center;gap:8px;margin-top:-12px}
+.hi-two{display:grid;grid-template-columns:1fr 330px 1.15fr;gap:32px;align-items:center;padding-top:40px;padding-bottom:0}
+.hi-hexbox{background:#0b0b0d;border-radius:20px;padding:24px 10px 22px;box-shadow:0 30px 70px rgba(10,26,74,.28)}
+.hi-hexrow{display:flex;justify-content:center;gap:6px;margin-top:-8px}
 .hi-hexrow:first-child{margin-top:0}
-.hi-hex{position:relative;width:138px;height:160px;display:block;text-decoration:none;color:#fff;transition:transform .25s}
+.hi-hex{position:relative;width:97px;height:112px;display:block;text-decoration:none;color:#fff;transition:transform .25s}
 .hi-hex:hover{transform:translateY(-3px)}
 .hi-hex::before,.hi-hex i{content:"";position:absolute;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
 .hi-hex::before{inset:0;background:#3b3b40;transition:.3s}
 .hi-hex i{inset:2px;background:#0f0f12;transition:.3s}
-.hi-hex div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1;padding:0 12px}
-.hi-hex em{font-style:normal;font-size:22px;color:#3d7bff;line-height:1;margin-bottom:7px;transition:.3s}
-.hi-hex b{font:700 15px/1.1 "Sora",sans-serif}
-.hi-hex span{font-size:12px;color:#9aa0b4;margin-top:3px;transition:.3s}
-.hi-more{margin:22px 0 0;text-align:center;font-size:13px;letter-spacing:.12em;color:#8b92a8;text-transform:uppercase}
+.hi-hex div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1;padding:0 8px}
+.hi-hex em{font-style:normal;font-size:16px;color:#3d7bff;line-height:1;margin-bottom:4px;transition:.3s}
+.hi-hex b{font:700 12px/1.1 "Sora",sans-serif}
+.hi-hex span{font-size:10px;color:#9aa0b4;margin-top:2px;transition:.3s}
+.hi-more{margin:16px 0 0;text-align:center;font-size:10.5px;letter-spacing:.12em;color:#8b92a8;text-transform:uppercase}
 .hi-hex.on::before{background:#2563eb}
 .hi-hex.on i{background:#2563eb}
 .hi-hex.on em,.hi-hex.on span{color:#fff}
 .hi-hex.core::before{background:#2563eb}
 .hi-hex.core i{background:#0f0f12}
-.hi-hex.core b{font-size:16px;letter-spacing:.02em}
+.hi-hex.core{z-index:2}
+.hi-hex.core b{font-size:12px;letter-spacing:.02em}
+.hi-hex.core::after{content:"";position:absolute;left:50%;top:50%;width:200%;height:200%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(47,107,255,.55),rgba(47,107,255,.18) 42%,transparent 68%);box-shadow:0 0 0 8px rgba(47,107,255,.06),inset 0 0 0 1.5px rgba(110,160,255,.35);z-index:-1;pointer-events:none}
 
-.hi-form{background:#fff;border:1px solid var(--hl);border-radius:22px;padding:38px 36px;box-shadow:0 24px 60px rgba(11,70,214,.12)}
-.hi .hi-form h2{font-size:clamp(30px,3.4vw,42px);color:var(--hb);margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
-.hi-form p.hi-fs{color:var(--hm);margin:0 0 22px;font-size:16px}
-.hi-fg{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px}
-.hi-fg label{display:block;font-size:14px;color:#1c2340;padding-top:10px}
+.hi-form{background:#fff;border:1px solid var(--hl);border-radius:22px;padding:28px 26px;box-shadow:0 24px 60px rgba(11,70,214,.12)}
+.hi .hi-form h2{font-size:clamp(26px,2.4vw,32px);color:var(--hb);margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+.hi-form p.hi-fs{color:var(--hm);margin:0 0 14px;font-size:15px}
+.hi-fg{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px}
+.hi-fg label{display:block;font-size:13px;color:#1c2340;padding-top:10px}
 .hi-fg label i{color:#e53935;font-style:normal}
 .hi-fg input,.hi-fg select{width:100%;border:0;border-bottom:1.5px solid var(--hl);padding:8px 0 10px;font:16px "Plus Jakarta Sans",system-ui,sans-serif;background:transparent;outline:none;color:#0a0a0a;border-radius:0}
 .hi-fg input:focus,.hi-fg select:focus{border-bottom-color:var(--hb)}
-.hi-chk{display:flex;gap:12px;align-items:flex-start;margin:22px 0;font-size:14px;color:var(--hm);line-height:1.5}
+.hi-chk{display:flex;gap:10px;align-items:flex-start;margin:18px 0;font-size:13px;color:var(--hm);line-height:1.5}
 .hi-chk input{margin-top:3px;width:18px;height:18px;flex:none}
 .hi-err{color:#c62828;font-size:14px;margin:0 0 12px}
 .hi-ok{text-align:center;padding:30px 0}
 .hi-ok h3{font-size:26px;color:var(--hb);margin:0 0 10px}
 .hi-ok p{color:var(--hm);margin:0 0 20px}
 
+@media (max-width:760px){
+  .hi-sc{display:none}
+  .hi-main{width:92%;top:6%}
+  .hi-stage{height:clamp(240px,62vw,420px)}
+}
+@media (max-width:1100px){
+  .hi-two{grid-template-columns:330px 1fr}
+  .hi-side{grid-column:1/-1}
+}
 @media (max-width:900px){
   .hi-hero{padding-top:48px}
   .hi-copy{padding-top:60px}
@@ -297,51 +359,71 @@ const TICKS = [
   "One shared database across modules", "New modules added over time",
 ];
 
+// FIXED hero picture area (does not change, no tabs):
+//   middle image : /public/hero-main.png  (.jpg / .jpeg also work)
+//   4 side images: /public/hero-side-1.png ... hero-side-4.png  (.jpg / .jpeg also work)
+// Until you add them, the middle shows demo.png / erp.png and the sides show soft shaded cards.
+const SIDE_FIX = [
+  ["▦", "ERP", "Operations", "#2f6bff"],
+  ["☺", "HRMS", "People", "#7c4dff"],
+  ["₹", "Accounts", "Finance", "#10a36a"],
+  ["✉", "Chatbot", "Support", "#f59e0b"],
+];
+const DOTS = [6, 14, 22, 31, 40, 49, 58, 67, 76, 84, 92];
+function Pic({ names, fallback, alt = "" }) {
+  const [k, setK] = useState(0);
+  if (k >= names.length) return fallback;
+  return <img src={names[k]} alt={alt} onError={() => setK(k + 1)} />;
+}
+const exts = (base) => [base + ".png", base + ".jpg", base + ".jpeg"];
+
 function HomeIntro() {
-  const [i, setI] = useState(0);
-  const [miss, setMiss] = useState({});
-  // auto-change every 4 s, timer restarts when a tab is clicked
-  useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % TH.length), 4000);
-    return () => clearInterval(t);
-  }, [i]);
-  const id = TH[i][3];
-  const p = P[i];
-  // image order: /<id>.png  ->  /demo.png  ->  placeholder
-  const step = miss[id] || 0;
-  const src = step === 0 ? "/" + id + ".png" : step === 1 ? "/demo.png" : "";
   return (
     <section className="hi">
       <style>{HI_CSS}</style>
       <div className="hi-glow" aria-hidden="true" />
 
-      {/* 1. HERO + image in the middle */}
+      {/* 1. HERO + fixed picture area */}
       <div className="hi-w hi-hero">
         <span className="hi-eyebrow">ONE INTEGRATED BUSINESS MANAGEMENT SOLUTION</span>
         <h1>Software that handles the <span className="hi-hl">busywork.</span></h1>
-        <p className="hi-lead" key={id}>{p.tag}</p>
+        <p className="hi-lead">Use the complete Mosbee solution, or only the modules your business needs.</p>
         <div className="hi-btns">
-          <Link className="hi-btn hi-pri" to={"/" + id}>Explore Solutions →</Link>
+          <Link className="hi-btn hi-pri" to="/services">Explore Solutions →</Link>
           <Link className="hi-btn hi-ghost" to="/contact">Contact Us</Link>
         </div>
-        <ul className="hi-tabs">
-          {TH.map((t, k) => (
-            <li key={t[3]}>
-              <button className={k === i ? "on" : ""} onClick={() => setI(k)}><em>{String(k + 1).padStart(2, "0")}</em>{t[4]}</button>
-            </li>
+        <div className="hi-stage">
+          <div className="hi-orb hi-orb1" aria-hidden="true" /><div className="hi-orb hi-orb2" aria-hidden="true" /><div className="hi-orb hi-orb3" aria-hidden="true" />
+          <div className="hi-floor" aria-hidden="true" />
+          {DOTS.map((x, i) => <span key={i} className="hi-dot" aria-hidden="true" style={{ "--x": x + "%", "--d": 8 + (i % 4) * 1.6 + "s", "--dl": -(i * 1.3) + "s" }} />)}
+          {SIDE_FIX.map(([ic, name, sub, col], k) => (
+            <div key={name} className={"hi-sc hi-sc" + k} style={{ color: col }} aria-hidden="true">
+              <Pic names={exts("/hero-side-" + (k + 1))} fallback={<><i className="hi-sci">{ic}</i><b>{name}</b><small>{sub}</small></>} />
+            </div>
           ))}
-        </ul>
-        <div className="hi-demo"><div className="hi-shot">
-          {src ? (
-            <img key={src} src={src} alt={p.name} onError={() => setMiss((m) => ({ ...m, [id]: (m[id] || 0) + 1 }))} />
-          ) : (
-            <div className="hi-ph"><div /><div /><div /><div /><span>Add /demo.png</span></div>
-          )}
-        </div></div>
+          <div className="hi-main">
+            <Pic
+              names={[...exts("/hero-main"), "/demo.png", "/erp.png"]}
+              alt="Mosbee"
+              fallback={<div className="hi-ph"><div /><div /><div /><div /><span>Add /hero-main.png</span></div>}
+            />
+          </div>
+        </div>
       </div>
 
       {/* 2. HEXAGON DIAGRAM + FORM */}
       <div className="hi-w hi-two">
+        <div className="hi-side">
+          <span className="hi-pill">SEE IT IN ACTION</span>
+          <h3>One product. Every module. One shared database.</h3>
+          <p>Book a free demo and see how Mosbee fits the way your business works, as the complete solution or as single modules.</p>
+          <ul>
+            <li>Free product demo</li>
+            <li>Choose the full suite or single modules</li>
+            <li>Guidance from our team</li>
+          </ul>
+          <a className="hi-call" href={"tel:" + PHONE.replace(/ /g, "")}>Prefer to talk? Call {PHONE}</a>
+        </div>
         <HexMap />
         <DemoForm />
       </div>
@@ -388,24 +470,73 @@ const Cta = ({ t }) => (
   </div></div>
 );
 
-// Four panels in a row; the one you hover (or tap) opens up to show the details
+const SVC_COL = {
+  "ai-solutions": ["#e8f0ff", "#2f6bff"],
+  "software-development": ["#efe9ff", "#7c4dff"],
+  "web-and-app": ["#e3f6fb", "#0aa5c8"],
+  "digital-solutions": ["#fff3dc", "#f59e0b"],
+};
+const SX_CSS = `
+.sx{display:grid;grid-template-columns:minmax(260px,.8fr) 1.7fr;gap:30px;align-items:stretch;text-align:left}
+.sx-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.sx-list button{width:100%;display:flex;align-items:center;gap:16px;text-align:left;cursor:pointer;background:rgba(255,255,255,.75);border:1px solid #e3eaf8;border-radius:18px;padding:18px 20px;font:700 19px "Sora","Plus Jakarta Sans",sans-serif;color:#0a1a4a;transition:.25s}
+.sx-list button:hover{border-color:var(--c)}
+.sx-list button em{font-style:normal;font-size:14px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.sx-list button span{flex:1}
+.sx-list button i{font-style:normal;opacity:0;transform:translateX(-6px);transition:.25s;color:var(--c)}
+.sx-list button.on{background:#fff;border-color:var(--c);box-shadow:0 14px 34px color-mix(in srgb,var(--c) 22%,transparent);transform:translateX(8px)}
+.sx-list button.on i{opacity:1;transform:none}
+.sx-panel{position:relative;overflow:hidden;border-radius:30px;padding:48px 52px;min-height:440px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,var(--t),#fff 78%);border:1px solid color-mix(in srgb,var(--c) 18%,#fff);box-shadow:0 24px 60px color-mix(in srgb,var(--c) 14%,transparent);animation:sxin .5s ease}
+@keyframes sxin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.sx-n{position:absolute;right:34px;top:10px;font:800 150px/1 "Sora",sans-serif;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--c) 24%,#fff);pointer-events:none}
+.sx-ic{position:relative;width:76px;height:76px;border-radius:22px;background:var(--c);color:#fff;display:grid;place-items:center;font-size:34px;margin-bottom:24px;box-shadow:0 14px 30px color-mix(in srgb,var(--c) 40%,transparent)}
+.sx-panel h3{position:relative;margin:0 0 12px;font-size:clamp(28px,3vw,40px);color:#0a1a4a;font-weight:800;letter-spacing:-.02em}
+.sx-panel p{position:relative;margin:0 0 26px;font-size:18px;line-height:1.75;color:#4b5575;max-width:620px}
+.sx-pts{position:relative;list-style:none;margin:0 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:12px}
+.sx-pts li{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid color-mix(in srgb,var(--c) 20%,#fff);border-radius:14px;padding:12px 18px;font-weight:600;font-size:16px;color:#1c2340;box-shadow:0 6px 16px rgba(11,70,214,.06)}
+.sx-pts li::before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}
+.sx-go{position:relative;align-self:flex-start;display:inline-block;padding:14px 26px;border-radius:12px;background:var(--c);color:#fff;font:700 16px "Sora",sans-serif;text-decoration:none;transition:.2s}
+.sx-go:hover{transform:translateY(-2px)}
+.sx-orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--c) 28%,transparent),transparent 70%)}
+.sx-o1{width:360px;height:360px;right:-90px;bottom:-110px}
+.sx-o2{width:200px;height:200px;right:180px;top:-80px;opacity:.7}
+@media (max-width:860px){
+  .sx{grid-template-columns:1fr}
+  .sx-list{flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .sx-list li{flex:0 0 auto}
+  .sx-list button{width:auto;min-width:210px;font-size:16px}
+  .sx-list button.on{transform:none}
+  .sx-panel{padding:32px 24px;min-height:0}
+  .sx-n{font-size:90px;right:18px}
+}
+`;
 function ServiceCards() {
   const [a, setA] = useState(0);
+  const x = SERVICES[a];
+  const [t, c] = SVC_COL[x.id] || ["#e8f0ff", "#0b46d6"];
+  const num = (i) => String(i + 1).padStart(2, "0");
   return (
-    <div className="sv">
-      {SERVICES.map((x, i) => (
-        <div key={x.id} className={"sv-i" + (i === a ? " on" : "")} style={{ "--sc": x.c }} tabIndex={0}
-          onMouseEnter={() => setA(i)} onFocus={() => setA(i)} onClick={() => setA(i)}>
-          <span className="sv-n">{String(i + 1).padStart(2, "0")}</span>
-          <div className="sv-ic">{x.icon}</div>
-          <h3>{x.name}</h3>
-          <div className="sv-more">
-            <p>{x.d}</p>
-            <ul>{(x.pts || []).map((t) => <li key={t}>{t}</li>)}</ul>
-            <Link className="sv-go" to={"/services/" + x.id}>Learn more →</Link>
-          </div>
-        </div>
-      ))}
+    <div className="sx" style={{ "--t": t, "--c": c }}>
+      <style>{SX_CSS}</style>
+      <ul className="sx-list">
+        {SERVICES.map((sv, i) => (
+          <li key={sv.id}>
+            <button className={i === a ? "on" : ""} style={{ "--c": (SVC_COL[sv.id] || [0, "#0b46d6"])[1] }}
+              onMouseEnter={() => setA(i)} onFocus={() => setA(i)} onClick={() => setA(i)}>
+              <em>{num(i)}</em><span>{sv.name}</span><i aria-hidden="true">→</i>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="sx-panel" key={x.id}>
+        <span className="sx-n" aria-hidden="true">{num(a)}</span>
+        <div className="sx-orb sx-o1" /><div className="sx-orb sx-o2" />
+        <div className="sx-ic">{x.icon}</div>
+        <h3>{x.name}</h3>
+        <p>{x.d}</p>
+        <ul className="sx-pts">{(x.pts || []).map((pt) => <li key={pt}>{pt}</li>)}</ul>
+        <Link className="sx-go" to={"/services/" + x.id}>Learn more →</Link>
+      </div>
     </div>
   );
 }
