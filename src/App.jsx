@@ -131,7 +131,7 @@ const HI_CSS = `
 .hi-ph span{position:absolute;right:18px;bottom:14px;font-size:12px;color:var(--hm);background:#fff;border:1px solid var(--hl);padding:4px 10px;border-radius:999px}
 
 /* content block */
-.hi-copy{max-width:1100px;margin:0 auto;padding-top:90px}
+.hi-copy{max-width:1100px;margin:0 auto;padding-top:100px}
 .hi-copy p{font-size:18px;line-height:1.85;color:var(--hm);margin:0 0 20px}
 .hi-copy p b{color:#1c2340;font-weight:600}
 .hi-choose{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0 6px}
@@ -143,8 +143,15 @@ const HI_CSS = `
 .hi-ticks li{display:flex;align-items:center;gap:14px;font-size:18px;color:#1c2340}
 .hi-ticks li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:50%;background:var(--hb);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800}
 
+.hi-whoS{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;margin-top:90px;padding-bottom:100px}
+.hi-whoP{min-height:300px;border-radius:26px;box-shadow:0 18px 44px rgba(11,70,214,.16);background:url(/about-side.jpg) center/cover no-repeat,url(/about-side.jpeg) center/cover no-repeat,url(/about-side.png) center/cover no-repeat,linear-gradient(135deg,#dfe8ff,#f1f5ff)}
+.hi-whoC{border-radius:26px;background:linear-gradient(160deg,#0a1a4a,#0b2a7a);color:#fff;padding:32px 34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;box-shadow:0 18px 44px rgba(10,26,74,.26)}
+.hi-whoC .hi-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.hi .hi-whoC h3{margin:14px 0 12px;font-size:clamp(22px,2.2vw,28px);line-height:1.25;color:#fff;font-weight:700}
+.hi-whoC p{margin:0 0 10px;font-size:16px;line-height:1.7;color:#c9d6f5}
+.hi-sm{padding:11px 22px;font-size:15px;margin-top:10px}
 /* hexagons + form */
-.hi-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-top:100px;padding-bottom:110px}
+.hi-two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-top:100px;padding-bottom:0}
 .hi-hexbox{background:#0b0b0d;border-radius:24px;padding:36px 20px 40px;box-shadow:0 30px 70px rgba(10,26,74,.28)}
 .hi-hexrow{display:flex;justify-content:center;gap:8px;margin-top:-12px}
 .hi-hexrow:first-child{margin-top:0}
@@ -185,6 +192,8 @@ const HI_CSS = `
   .hi-copy{padding-top:60px}
   .hi-ticks,.hi-choose{grid-template-columns:1fr}
   .hi-two{grid-template-columns:1fr;padding-top:70px}
+  .hi-whoS{grid-template-columns:1fr;margin-top:60px}
+  .hi-whoP{min-height:220px}
   .hi-fg{grid-template-columns:1fr}
   .hi-hex{width:30%;height:auto;aspect-ratio:138/160}
 }
@@ -331,7 +340,13 @@ function HomeIntro() {
         </div></div>
       </div>
 
-      {/* 2. ONE PRODUCT, MANY MODULES */}
+      {/* 2. HEXAGON DIAGRAM + FORM */}
+      <div className="hi-w hi-two">
+        <HexMap />
+        <DemoForm />
+      </div>
+
+      {/* 3. ONE PRODUCT, MANY MODULES */}
       <div className="hi-w hi-copy">
         <p><b>Mosbee</b> is an integrated business management solution that brings multiple business modules together under a single product. Choosing the right software is not just about comparing features: the system needs to fit the way your company <b>actually works</b> and grow with you.</p>
         <p>It connects <b>ERP, Accounts, HRMS, CRM, PRO, Chatbot, Project Management and Task Management</b> on one shared database, so every team sees the same information and nobody enters the same data twice. More business modules will be added over time.</p>
@@ -342,10 +357,15 @@ function HomeIntro() {
         <ul className="hi-ticks">{TICKS.map((t) => <li key={t}>{t}</li>)}</ul>
       </div>
 
-      {/* 3. HEXAGON DIAGRAM + FORM */}
-      <div className="hi-w hi-two">
-        <HexMap />
-        <DemoForm />
+      {/* 4. WHO WE ARE (small) */}
+      <div className="hi-w hi-whoS">
+        <div className="hi-whoP" role="img" aria-label="The Mosbee team" />
+        <div className="hi-whoC">
+          <span className="hi-pill">WHO WE ARE</span>
+          <h3>Your partner in smarter business management</h3>
+          {STORY.map((t) => <p key={t}>{t}</p>)}
+          <Link className="hi-btn hi-pri hi-sm" to="/about">Learn more →</Link>
+        </div>
       </div>
     </section>
   );
