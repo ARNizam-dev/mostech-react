@@ -615,6 +615,38 @@ function DriveSection() {
   );
 }
 
+const HELP = [
+  ["Business Consulting", <><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></>,
+    "Not sure which modules your business really needs? We start by listening. Our team studies how your branches, people and accounts work today, then recommends the right mix of ERP, accounting, HR, CRM and the other Mosbee modules, so you invest only in what will make a difference."],
+  ["Setup & Implementation", <><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></>,
+    "We configure Mosbee around your way of working, not the other way round. Your data is moved across safely, your users and approvals are set up, and every module is tested before go-live, so your team starts with a system that already fits."],
+  ["Training & Support", <><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></>,
+    "New software only helps when people are comfortable using it. We train your staff on the screens they use every day, share simple guides, and stay available by phone and email, so questions get answered quickly and nobody is left guessing."],
+  ["Updates & Maintenance", <><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></>,
+    "Your business keeps changing, and your software should too. We keep Mosbee updated and secure, check performance regularly, and add custom reports, fields and features whenever your needs grow."],
+];
+function HelpSection() {
+  return (
+    <section className="hp">
+      <div className="hp-w">
+        <h2>How Mosbee Can Help <span>Your Business</span></h2>
+        <p className="hp-sub">From the first conversation to everyday support, one team is with you at every step.</p>
+        <div className="hp-grid">
+          {HELP.map(([t, ic, d], i) => (
+            <article className="hp-card" key={t}>
+              <div className="hp-top">
+                <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ic}</svg>
+                <h3>{t}</h3>
+              </div>
+              <p>{d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const METHOD = [
   ["Project Initiation", "During the project initiation phase, we conduct an in-depth system study to thoroughly understand your requirements. Our primary goal is to analyze and document all your needs to develop a tailored solution that ensures project success and delivers positive results."],
   ["Project Planning", "In the project planning phase, we utilize the requirements identified during the initiation phase to create a comprehensive plan. Our team meticulously crafts this plan to ensure the project achieves its optimal target results, setting a clear roadmap for successful development and implementation."],
@@ -653,6 +685,26 @@ function Methodology() {
   );
 }
 
+function HappyBanner() {
+  return (
+    <section className="hc">
+      <svg className="hc-wave" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V30C1100 40 560 100 0 165Z" fill="#fff" />
+      </svg>
+      <div className="hc-w">
+        <div>
+          <h2>Your success is our biggest goal</h2>
+          <p>Let&rsquo;s grow your business together.</p>
+          <Link className="hc-btn" to="/contact">Talk to our team &rarr;</Link>
+        </div>
+        <div className="hc-img">
+          <Pic names={["png","jpg","jpeg","webp","avif","PNG","JPG","JPEG"].map((e) => "/happy-clients." + e)} alt="Happy clients" fallback={<span className="hc-fb">Add image: happy-clients.jpg</span>} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const PARTNERS = [
   ["jio", "Jio"], ["meta", "Meta"], ["google", "Google"], ["linkedin", "LinkedIn"], ["tiktok", "TikTok"],
   ["microsoft", "Microsoft"], ["godaddy", "GoDaddy"], ["hostinger", "Hostinger"], ["zoho", "Zoho"], ["facebook", "Facebook"],
@@ -685,7 +737,9 @@ const Home = () => (
     <HomeIntro />
     <DriveSection />
     <ProductStack />
+    <HelpSection />
     <Methodology />
+    <HappyBanner />
     <PartnersMarquee />
   </div>
 );
@@ -941,16 +995,42 @@ function Contact() {
   );
 }
 
+const SOCIAL = [
+  ["Facebook", "https://facebook.com/", <path key="f" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z" />],
+  ["YouTube", "https://youtube.com/", <path key="y" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.300.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.700 19 12 19 12 19s6.300 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800C22 15.300 22 12 22 12s0-3.300-.4-4.800zM10 15V9l5.200 3z" />],
+  ["Instagram", "https://instagram.com/", <g key="i" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.500" cy="6.500" r="1" fill="currentColor" stroke="none" /></g>],
+  ["LinkedIn", "https://linkedin.com/", <path key="l" d="M4.980 3.500a2.500 2.500 0 1 1 0 5 2.500 2.500 0 0 1 0-5zM3 9.500h4V21H3zM9.500 9.500h3.800v1.600h.1c.5-1 1.800-1.900 3.700-1.900 4 0 4.700 2.600 4.700 6V21h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700V21h-4z" />],
+];
 const Footer = () => (
-  <footer><div className="wrap">
-    <div className="fg">
-      <div>
+  <footer className="ft2"><div className="ft2-w">
+    <div className="ft2-grid">
+      <div className="ft2-brand">
         <Link className="ft-logo" to="/"><i>M</i>MOSBEE</Link>
         <p>{ABOUT}</p>
       </div>
-      <div><h4>Company</h4><Link to="/">Home</Link><Link to="/about">About us</Link><Link to="/services">Our services</Link><Link to="/contact">Contact us</Link></div>
-      <div><h4>Products</h4>{P.map((p) => <Link key={p.id} to={"/" + p.id}>{p.name}</Link>)}</div>
-      <div><h4>Contact</h4><a href="tel:+918891904007">+91 8891904007</a><a href="mailto:info@mostech.ae">info@mostech.ae</a></div>
+      <div>
+        <h4>Our Address</h4>
+        {/* Replace with your full office address */}
+        <p className="ft2-addr">Dubai<br />United Arab Emirates</p>
+        <a className="ft2-ct" href="tel:+918891904007">+91 8891904007</a>
+        <a className="ft2-ct" href="mailto:info@mostech.ae">info@mostech.ae</a>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <Link to="/">Home</Link><Link to="/about">About us</Link><Link to="/services">Our services</Link><Link to="/contact">Contact us</Link>
+        {P.map((p) => <Link key={p.id} to={"/" + p.id}>{p.name}</Link>)}
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div className="ft2-soc">
+          {SOCIAL.map(([n, href, ic]) => (
+            <a key={n} href={href} target="_blank" rel="noreferrer" aria-label={n}>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">{ic}</svg>
+            </a>
+          ))}
+        </div>
+        <iframe className="ft2-map" title="Mosbee location" loading="lazy" src="https://www.google.com/maps?q=Dubai%2C%20United%20Arab%20Emirates&output=embed" />
+      </div>
     </div>
     <div className="copy">
       <span>© Mosbee. All rights reserved.</span>
