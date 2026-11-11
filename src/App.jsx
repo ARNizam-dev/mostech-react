@@ -99,167 +99,6 @@ function Header() {
 // Home intro: hero + dashboard image + content + hexagon diagram + demo form, all on ONE continuous white page.
 // Photos go in /public: demo.png (dashboard shot). Optional per product: erp.png, hrms.png, chatbot.png ...
 // All styles are inside this file (classes start with hi-), so no other file is needed.
-const HI_CSS = `
-.hi{position:relative;overflow:hidden;background:#fff;color:#0a0a0a;--hb:#0b46d6;--hn:#0a1a4a;--hy:#ffc800;--hm:#4b5575;--hl:#dbe3f5;--hs:#f3f6ff}
-.hi-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(720px 420px at 18% 0%,rgba(255,200,0,.20),transparent 70%),radial-gradient(820px 480px at 88% 6%,rgba(11,70,214,.15),transparent 70%),radial-gradient(900px 520px at 6% 70%,rgba(11,70,214,.08),transparent 70%)}
-.hi-w{position:relative;max-width:1200px;margin:0 auto;padding:0 24px}
-.hi-hero{text-align:center;padding-top:76px}
-.hi-eyebrow{display:block;font-size:13px;font-weight:600;letter-spacing:.28em;color:var(--hm)}
-.hi .hi-hero h1{font-size:clamp(38px,6vw,76px);line-height:1.05;letter-spacing:-.025em;margin:18px auto 20px;max-width:900px;color:var(--hn);font-weight:800}
-.hi-hl{position:relative;background:linear-gradient(90deg,#0b46d6,#5b8dff);-webkit-background-clip:text;background-clip:text;color:transparent;z-index:0}
-.hi-hl::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:9px;background:var(--hy);opacity:.55;border-radius:4px;z-index:-1}
-.hi-lead{font-size:19px;color:var(--hm);max-width:620px;margin:0 auto;min-height:30px;animation:hifade .5s ease}
-@keyframes hifade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.hi-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.hi-btn{display:inline-block;padding:15px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid transparent;transition:.2s;font-family:"Sora","Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer}
-.hi-pri{background:var(--hy);color:#0a0a0a;box-shadow:0 8px 22px rgba(255,200,0,.35)}
-.hi-pri:hover{transform:translateY(-2px);background:#ffd633}
-.hi-ghost{background:#fff;color:var(--hb);border-color:var(--hb)}
-.hi-ghost:hover{background:var(--hs)}
-.hi-tabs{list-style:none;margin:40px auto 0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:920px}
-.hi-tabs button{cursor:pointer;font:600 14px "Plus Jakarta Sans",system-ui,sans-serif;padding:9px 16px;border-radius:999px;border:1px solid var(--hl);background:#fff;color:var(--hm);transition:.2s}
-.hi-tabs em{font-style:normal;font-size:12px;color:var(--hb);margin-right:6px}
-.hi-tabs button:hover,.hi-tabs button.on{border-color:var(--hb);color:var(--hb);background:var(--hs)}
-
-/* dashboard image in the middle */
-.hi-demo{margin:36px auto 0;max-width:940px;background:#fff;border:1px solid var(--hl);border-radius:18px;box-shadow:0 30px 80px rgba(11,70,214,.18);overflow:hidden}
-.hi-shot{position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 50% 40%,#ffffff,#eaf3ff 75%);display:grid;place-items:center}
-.hi-shot img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;animation:hifade .5s ease}
-.hi-ph{width:86%;display:grid;grid-template-columns:1fr 2fr;gap:14px}
-.hi-ph div{background:#fff;border:1px solid var(--hl);border-radius:12px;height:110px}
-.hi-ph div:nth-child(2){grid-row:span 2;height:auto}
-.hi-ph span{position:absolute;right:18px;bottom:14px;font-size:12px;color:var(--hm);background:#fff;border:1px solid var(--hl);padding:4px 10px;border-radius:999px}
-
-/* hero stage: one big image in the middle, soft glass cards on both sides, blue grid floor */
-.hi-stage{position:relative;overflow-x:clip;overflow-y:visible;width:100vw;margin:40px 0 0 calc(50% - 50vw);height:clamp(320px,46vw,640px);background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,224,200,.30) 18%,rgba(186,214,255,.55) 58%,rgba(120,176,255,.85) 100%)}
-.hi-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);z-index:4;pointer-events:none}
-.hi-floor{position:absolute;left:-10%;right:-10%;bottom:0;height:50%;perspective:560px;overflow:hidden;background:linear-gradient(180deg,rgba(120,176,255,0),rgba(90,160,255,.55))}
-.hi-floor::before{content:"";position:absolute;left:0;right:0;top:-30%;bottom:0;background-image:linear-gradient(rgba(255,255,255,.6) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.6) 1.5px,transparent 1.5px);background-size:72px 72px;transform:rotateX(62deg);transform-origin:50% 100%}
-.hi-main{position:absolute;left:50%;top:7%;width:min(62%,900px);aspect-ratio:16/9.6;transform:translateX(-50%) perspective(1800px) rotateX(3deg);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(11,70,214,.30),0 0 0 6px rgba(255,255,255,.55);z-index:3}
-.hi-main img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;animation:hifade .5s ease}
-.hi-main .hi-ph{width:100%;height:100%;padding:6%;box-sizing:border-box;align-content:center;background:linear-gradient(180deg,#f7f9ff,#eaf0ff)}
-.hi-sc{position:absolute;top:22%;width:12.5%;height:56%;border-radius:20px;padding:clamp(12px,1.5vw,24px);text-align:left;display:flex;flex-direction:column;gap:8px;z-index:2;background:linear-gradient(165deg,rgba(255,255,255,.85),rgba(255,255,255,.35));border:1px solid rgba(255,255,255,.9);box-shadow:0 20px 50px rgba(47,107,255,.16);backdrop-filter:blur(6px);animation:hifade .6s ease}
-.hi-sc small{font-size:clamp(11px,1vw,15px);color:#5b6482;line-height:1.3}
-.hi-sc b{font:800 clamp(18px,2vw,32px)/1.1 "Sora",sans-serif;color:#0a1a4a;letter-spacing:-.01em}
-.hi-sc{overflow:hidden;justify-content:center}
-.hi-sc>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
-.hi-sc:has(>img)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 40%,rgba(120,176,255,.30));pointer-events:none}
-.hi-sci{font-style:normal;font-size:clamp(30px,4vw,64px);line-height:1;opacity:.55;margin-bottom:6px}
-.hi-sc0{left:-6%;--ry:18deg;--op:.7;transform:perspective(900px) rotateY(var(--ry));opacity:.7}
-.hi-sc1{left:5.5%;--ry:14deg;--op:1;transform:perspective(900px) rotateY(var(--ry))}
-.hi-sc2{right:5.5%;--ry:-14deg;--op:1;transform:perspective(900px) rotateY(var(--ry))}
-.hi-sc3{right:-6%;--ry:-18deg;--op:.7;transform:perspective(900px) rotateY(var(--ry));opacity:.7}
-/* hero animation */
-.hi-main{animation:hiMainIn 1s cubic-bezier(.2,.8,.2,1) both,hiMainFloat 7s ease-in-out 1s infinite}
-@keyframes hiMainIn{from{opacity:0;transform:translateX(-50%) translateY(60px) perspective(1800px) rotateX(10deg) scale(.94)}to{opacity:1;transform:translateX(-50%) perspective(1800px) rotateX(3deg)}}
-@keyframes hiMainFloat{0%,100%{transform:translateX(-50%) translateY(0) perspective(1800px) rotateX(3deg)}50%{transform:translateX(-50%) translateY(-14px) perspective(1800px) rotateX(1.5deg)}}
-.hi-main::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.6) 50%,transparent 64%);transform:translateX(-130%);animation:hiShine 6s ease-in-out 2s infinite;pointer-events:none}
-@keyframes hiShine{0%{transform:translateX(-130%)}35%,100%{transform:translateX(130%)}}
-.hi-sc0,.hi-sc1{animation:hiSideL .9s ease-out .15s both,hiFloatS 6s ease-in-out 1.1s infinite}
-.hi-sc2,.hi-sc3{animation:hiSideR .9s ease-out .15s both,hiFloatS 6.5s ease-in-out 1.1s infinite reverse}
-.hi-sc1{animation-duration:.9s,7.5s}
-.hi-sc3{animation-duration:.9s,8s}
-@keyframes hiSideL{from{opacity:0;transform:perspective(900px) rotateY(var(--ry)) translateX(-90px)}to{opacity:var(--op);transform:perspective(900px) rotateY(var(--ry))}}
-@keyframes hiSideR{from{opacity:0;transform:perspective(900px) rotateY(var(--ry)) translateX(90px)}to{opacity:var(--op);transform:perspective(900px) rotateY(var(--ry))}}
-@keyframes hiFloatS{0%,100%{transform:perspective(900px) rotateY(var(--ry)) translateY(0)}50%{transform:perspective(900px) rotateY(var(--ry)) translateY(-16px)}}
-.hi-floor::before{animation:hiGrid 2.4s linear infinite}
-@keyframes hiGrid{from{background-position:0 0}to{background-position:0 72px}}
-.hi-hero>*:not(.hi-stage){position:relative;z-index:5}
-.hi-orb{position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none}
-.hi-orb1{width:560px;height:560px;left:0;top:-95%;background:rgba(255,196,120,.45);animation:hiDrift1 14s ease-in-out infinite alternate}
-.hi-orb2{width:600px;height:600px;right:0;top:-70%;background:rgba(80,140,255,.40);animation:hiDrift2 16s ease-in-out infinite alternate}
-.hi-orb3{width:360px;height:360px;left:38%;bottom:-18%;background:rgba(124,77,255,.25);animation:hiDrift1 18s ease-in-out infinite alternate-reverse}
-@keyframes hiDrift1{from{transform:translate(0,0) scale(1)}to{transform:translate(90px,40px) scale(1.15)}}
-@keyframes hiDrift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-100px,50px) scale(1.1)}}
-.hi-dot{position:absolute;bottom:-10px;left:var(--x);width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.95);box-shadow:0 0 12px rgba(80,140,255,.7);pointer-events:none;z-index:1;animation:hiRise var(--d,9s) linear var(--dl,0s) infinite}
-@keyframes hiRise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translateY(-520px) scale(1.1);opacity:0}}
-@media (prefers-reduced-motion:reduce){.hi-main,.hi-main::after,.hi-sc,.hi-orb,.hi-dot,.hi-floor::before{animation:none!important}}
-/* content block */
-.hi-copy{max-width:1100px;margin:0 auto;padding-top:100px}
-.hi-copy p{font-size:18px;line-height:1.85;color:var(--hm);margin:0 0 20px}
-.hi-copy p b{color:#1c2340;font-weight:600}
-.hi-choose{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0 6px}
-.hi-choose div{position:relative;background:#fff;border:1px solid var(--hl);border-radius:16px;padding:22px 24px 22px 70px;box-shadow:0 8px 24px rgba(11,70,214,.08)}
-.hi-choose em{position:absolute;left:22px;top:22px;width:34px;height:34px;border-radius:10px;background:var(--hb);color:#fff;font-style:normal;font-weight:800;font-size:13px;display:grid;place-items:center}
-.hi-choose h3{margin:0 0 6px;font-size:20px;color:var(--hn)}
-.hi-choose p{margin:0;font-size:15px;line-height:1.6}
-.hi-ticks{list-style:none;margin:38px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 60px}
-.hi-ticks li{display:flex;align-items:center;gap:14px;font-size:18px;color:#1c2340}
-.hi-ticks li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:50%;background:var(--hb);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800}
-
-.hi-whoS{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;margin-top:90px;padding-bottom:100px}
-.hi-whoP{min-height:300px;border-radius:26px;box-shadow:0 18px 44px rgba(11,70,214,.16);background:url(/about-side.jpg) center/cover no-repeat,url(/about-side.jpeg) center/cover no-repeat,url(/about-side.png) center/cover no-repeat,linear-gradient(135deg,#dfe8ff,#f1f5ff)}
-.hi-whoC{border-radius:26px;background:linear-gradient(160deg,#0a1a4a,#0b2a7a);color:#fff;padding:32px 34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;box-shadow:0 18px 44px rgba(10,26,74,.26)}
-.hi-whoC .hi-pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
-.hi .hi-whoC h3{margin:14px 0 12px;font-size:clamp(22px,2.2vw,28px);line-height:1.25;color:#fff;font-weight:700}
-.hi-whoC p{margin:0 0 10px;font-size:16px;line-height:1.7;color:#c9d6f5}
-.hi-sm{padding:11px 22px;font-size:15px;margin-top:10px}
-.hi-side{min-width:0}
-.hi .hi-side h3{font-size:clamp(24px,2.4vw,32px);line-height:1.2;color:var(--hn);margin:16px 0 12px;font-weight:800;letter-spacing:-.01em}
-.hi-side p{font-size:16px;line-height:1.75;color:var(--hm);margin:0 0 16px}
-.hi-side ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
-.hi-side li{display:flex;gap:12px;align-items:center;font-size:16px;color:#1c2340}
-.hi-side li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--hb);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
-.hi-call{font-weight:700;color:var(--hb);text-decoration:none;font-size:16px}
-/* hexagons + form */
-.hi-two{display:grid;grid-template-columns:1fr 330px 1.15fr;gap:32px;align-items:center;padding-top:40px;padding-bottom:0}
-.hi-hexbox{background:#0b0b0d;border-radius:20px;padding:24px 10px 22px;box-shadow:0 30px 70px rgba(10,26,74,.28)}
-.hi-hexrow{display:flex;justify-content:center;gap:6px;margin-top:-8px}
-.hi-hexrow:first-child{margin-top:0}
-.hi-hex{position:relative;width:97px;height:112px;display:block;text-decoration:none;color:#fff;transition:transform .25s}
-.hi-hex:hover{transform:translateY(-3px)}
-.hi-hex::before,.hi-hex i{content:"";position:absolute;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
-.hi-hex::before{inset:0;background:#3b3b40;transition:.3s}
-.hi-hex i{inset:2px;background:#0f0f12;transition:.3s}
-.hi-hex div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1;padding:0 8px}
-.hi-hex em{font-style:normal;font-size:16px;color:#3d7bff;line-height:1;margin-bottom:4px;transition:.3s}
-.hi-hex b{font:700 12px/1.1 "Sora",sans-serif}
-.hi-hex span{font-size:10px;color:#9aa0b4;margin-top:2px;transition:.3s}
-.hi-more{margin:16px 0 0;text-align:center;font-size:10.5px;letter-spacing:.12em;color:#8b92a8;text-transform:uppercase}
-.hi-hex.on::before{background:#2563eb}
-.hi-hex.on i{background:#2563eb}
-.hi-hex.on em,.hi-hex.on span{color:#fff}
-.hi-hex.core::before{background:#2563eb}
-.hi-hex.core i{background:#0f0f12}
-.hi-hex.core{z-index:2}
-.hi-hex.core b{font-size:12px;letter-spacing:.02em}
-.hi-hex.core::after{content:"";position:absolute;left:50%;top:50%;width:200%;height:200%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(47,107,255,.55),rgba(47,107,255,.18) 42%,transparent 68%);box-shadow:0 0 0 8px rgba(47,107,255,.06),inset 0 0 0 1.5px rgba(110,160,255,.35);z-index:-1;pointer-events:none}
-
-.hi-form{background:#fff;border:1px solid var(--hl);border-radius:22px;padding:28px 26px;box-shadow:0 24px 60px rgba(11,70,214,.12)}
-.hi .hi-form h2{font-size:clamp(26px,2.4vw,32px);color:var(--hb);margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
-.hi-form p.hi-fs{color:var(--hm);margin:0 0 14px;font-size:15px}
-.hi-fg{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px}
-.hi-fg label{display:block;font-size:13px;color:#1c2340;padding-top:10px}
-.hi-fg label i{color:#e53935;font-style:normal}
-.hi-fg input,.hi-fg select{width:100%;border:0;border-bottom:1.5px solid var(--hl);padding:8px 0 10px;font:16px "Plus Jakarta Sans",system-ui,sans-serif;background:transparent;outline:none;color:#0a0a0a;border-radius:0}
-.hi-fg input:focus,.hi-fg select:focus{border-bottom-color:var(--hb)}
-.hi-chk{display:flex;gap:10px;align-items:flex-start;margin:18px 0;font-size:13px;color:var(--hm);line-height:1.5}
-.hi-chk input{margin-top:3px;width:18px;height:18px;flex:none}
-.hi-err{color:#c62828;font-size:14px;margin:0 0 12px}
-.hi-ok{text-align:center;padding:30px 0}
-.hi-ok h3{font-size:26px;color:var(--hb);margin:0 0 10px}
-.hi-ok p{color:var(--hm);margin:0 0 20px}
-
-@media (max-width:760px){
-  .hi-sc{display:none}
-  .hi-main{width:92%;top:6%}
-  .hi-stage{height:clamp(240px,62vw,420px)}
-}
-@media (max-width:1100px){
-  .hi-two{grid-template-columns:330px 1fr}
-  .hi-side{grid-column:1/-1}
-}
-@media (max-width:900px){
-  .hi-hero{padding-top:48px}
-  .hi-copy{padding-top:60px}
-  .hi-ticks,.hi-choose{grid-template-columns:1fr}
-  .hi-two{grid-template-columns:1fr;padding-top:70px}
-  .hi-whoS{grid-template-columns:1fr;margin-top:60px}
-  .hi-whoP{min-height:220px}
-  .hi-fg{grid-template-columns:1fr}
-  .hi-hex{width:30%;height:auto;aspect-ratio:138/160}
-}
-`;
 
 const HEX = [
   [["acc", "Accounts", "Finance", "₹", "/accounting"], ["erp", "ERP", "Operations", "▦", "/erp"], ["hrms", "HRMS", "People", "☺", "/hrms"]],
@@ -364,10 +203,10 @@ const TICKS = [
 //   4 side images: /public/hero-side-1.png ... hero-side-4.png  (.jpg / .jpeg also work)
 // Until you add them, the middle shows demo.png / erp.png and the sides show soft shaded cards.
 const SIDE_FIX = [
-  ["▦", "ERP", "Operations", "#2f6bff"],
-  ["☺", "HRMS", "People", "#7c4dff"],
-  ["₹", "Accounts", "Finance", "#10a36a"],
-  ["✉", "Chatbot", "Support", "#f59e0b"],
+  ["▦", "ERP", "Operations", "#0b46d6"],
+  ["☺", "HRMS", "People", "#0b46d6"],
+  ["₹", "Accounts", "Finance", "#0b46d6"],
+  ["✉", "Chatbot", "Support", "#0b46d6"],
 ];
 const DOTS = [6, 14, 22, 31, 40, 49, 58, 67, 76, 84, 92];
 function Pic({ names, fallback, alt = "" }) {
@@ -380,7 +219,6 @@ const exts = (base) => [base + ".png", base + ".jpg", base + ".jpeg"];
 function HomeIntro() {
   return (
     <section className="hi">
-      <style>{HI_CSS}</style>
       <div className="hi-glow" aria-hidden="true" />
 
       {/* 1. HERO + fixed picture area */}
@@ -411,44 +249,6 @@ function HomeIntro() {
         </div>
       </div>
 
-      {/* 2. HEXAGON DIAGRAM + FORM */}
-      <div className="hi-w hi-two">
-        <div className="hi-side">
-          <span className="hi-pill">SEE IT IN ACTION</span>
-          <h3>One product. Every module. One shared database.</h3>
-          <p>Book a free demo and see how Mosbee fits the way your business works, as the complete solution or as single modules.</p>
-          <ul>
-            <li>Free product demo</li>
-            <li>Choose the full suite or single modules</li>
-            <li>Guidance from our team</li>
-          </ul>
-          <a className="hi-call" href={"tel:" + PHONE.replace(/ /g, "")}>Prefer to talk? Call {PHONE}</a>
-        </div>
-        <HexMap />
-        <DemoForm />
-      </div>
-
-      {/* 3. ONE PRODUCT, MANY MODULES */}
-      <div className="hi-w hi-copy">
-        <p><b>Mosbee</b> is an integrated business management solution that brings multiple business modules together under a single product. Choosing the right software is not just about comparing features: the system needs to fit the way your company <b>actually works</b> and grow with you.</p>
-        <p>It connects <b>ERP, Accounts, HRMS, CRM, PRO, Chatbot, Project Management and Task Management</b> on one shared database, so every team sees the same information and nobody enters the same data twice. More business modules will be added over time.</p>
-        <div className="hi-choose">
-          <div><em>01</em><h3>Complete solution</h3><p>Run your whole business on all Mosbee modules working together.</p></div>
-          <div><em>02</em><h3>Individual modules</h3><p>Buy and use only the modules you need today, and add more when you grow.</p></div>
-        </div>
-        <ul className="hi-ticks">{TICKS.map((t) => <li key={t}>{t}</li>)}</ul>
-      </div>
-
-      {/* 4. WHO WE ARE (small) */}
-      <div className="hi-w hi-whoS">
-        <div className="hi-whoP" role="img" aria-label="The Mosbee team" />
-        <div className="hi-whoC">
-          <span className="hi-pill">WHO WE ARE</span>
-          <h3>Your partner in smarter business management</h3>
-          {STORY.map((t) => <p key={t}>{t}</p>)}
-          <Link className="hi-btn hi-pri hi-sm" to="/about">Learn more →</Link>
-        </div>
-      </div>
     </section>
   );
 }
@@ -471,45 +271,11 @@ const Cta = ({ t }) => (
 );
 
 const SVC_COL = {
-  "ai-solutions": ["#e8f0ff", "#2f6bff"],
-  "software-development": ["#efe9ff", "#7c4dff"],
-  "web-and-app": ["#e3f6fb", "#0aa5c8"],
-  "digital-solutions": ["#fff3dc", "#f59e0b"],
+  "ai-solutions": ["#e8f0ff", "#0b46d6"],
+  "software-development": ["#e8f0ff", "#0b46d6"],
+  "web-and-app": ["#e8f0ff", "#0b46d6"],
+  "digital-solutions": ["#e8f0ff", "#0b46d6"],
 };
-const SX_CSS = `
-.sx{display:grid;grid-template-columns:minmax(260px,.8fr) 1.7fr;gap:30px;align-items:stretch;text-align:left}
-.sx-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;justify-content:center}
-.sx-list button{width:100%;display:flex;align-items:center;gap:16px;text-align:left;cursor:pointer;background:rgba(255,255,255,.75);border:1px solid #e3eaf8;border-radius:18px;padding:18px 20px;font:700 19px "Sora","Plus Jakarta Sans",sans-serif;color:#0a1a4a;transition:.25s}
-.sx-list button:hover{border-color:var(--c)}
-.sx-list button em{font-style:normal;font-size:14px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
-.sx-list button span{flex:1}
-.sx-list button i{font-style:normal;opacity:0;transform:translateX(-6px);transition:.25s;color:var(--c)}
-.sx-list button.on{background:#fff;border-color:var(--c);box-shadow:0 14px 34px color-mix(in srgb,var(--c) 22%,transparent);transform:translateX(8px)}
-.sx-list button.on i{opacity:1;transform:none}
-.sx-panel{position:relative;overflow:hidden;border-radius:30px;padding:48px 52px;min-height:440px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,var(--t),#fff 78%);border:1px solid color-mix(in srgb,var(--c) 18%,#fff);box-shadow:0 24px 60px color-mix(in srgb,var(--c) 14%,transparent);animation:sxin .5s ease}
-@keyframes sxin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.sx-n{position:absolute;right:34px;top:10px;font:800 150px/1 "Sora",sans-serif;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--c) 24%,#fff);pointer-events:none}
-.sx-ic{position:relative;width:76px;height:76px;border-radius:22px;background:var(--c);color:#fff;display:grid;place-items:center;font-size:34px;margin-bottom:24px;box-shadow:0 14px 30px color-mix(in srgb,var(--c) 40%,transparent)}
-.sx-panel h3{position:relative;margin:0 0 12px;font-size:clamp(28px,3vw,40px);color:#0a1a4a;font-weight:800;letter-spacing:-.02em}
-.sx-panel p{position:relative;margin:0 0 26px;font-size:18px;line-height:1.75;color:#4b5575;max-width:620px}
-.sx-pts{position:relative;list-style:none;margin:0 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:12px}
-.sx-pts li{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid color-mix(in srgb,var(--c) 20%,#fff);border-radius:14px;padding:12px 18px;font-weight:600;font-size:16px;color:#1c2340;box-shadow:0 6px 16px rgba(11,70,214,.06)}
-.sx-pts li::before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}
-.sx-go{position:relative;align-self:flex-start;display:inline-block;padding:14px 26px;border-radius:12px;background:var(--c);color:#fff;font:700 16px "Sora",sans-serif;text-decoration:none;transition:.2s}
-.sx-go:hover{transform:translateY(-2px)}
-.sx-orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--c) 28%,transparent),transparent 70%)}
-.sx-o1{width:360px;height:360px;right:-90px;bottom:-110px}
-.sx-o2{width:200px;height:200px;right:180px;top:-80px;opacity:.7}
-@media (max-width:860px){
-  .sx{grid-template-columns:1fr}
-  .sx-list{flex-direction:row;overflow-x:auto;padding-bottom:6px}
-  .sx-list li{flex:0 0 auto}
-  .sx-list button{width:auto;min-width:210px;font-size:16px}
-  .sx-list button.on{transform:none}
-  .sx-panel{padding:32px 24px;min-height:0}
-  .sx-n{font-size:90px;right:18px}
-}
-`;
 function ServiceCards() {
   const [a, setA] = useState(0);
   const x = SERVICES[a];
@@ -517,7 +283,6 @@ function ServiceCards() {
   const num = (i) => String(i + 1).padStart(2, "0");
   return (
     <div className="sx" style={{ "--t": t, "--c": c }}>
-      <style>{SX_CSS}</style>
       <ul className="sx-list">
         {SERVICES.map((sv, i) => (
           <li key={sv.id}>
@@ -613,27 +378,9 @@ const MODULES = [
   { n: "Projects", t: "#fff0e2", a: "#f07a1a", ic: "◫", to: "/project-management", d: "Plan, track and deliver projects on time with timelines, team collaboration and progress reports." },
   { n: "Tasks", t: "#f0f7dc", a: "#7aa80f", ic: "☑", to: "/task-management", d: "Assign, follow up and finish daily work with reminders, priorities and a clear view of who is doing what." },
 ];
-const MOD_CSS = `
-.hp{position:relative;background:transparent;padding:90px 0 100px}
-.hp-w{max-width:1240px;margin:0 auto;padding:0 24px}
-.hp h2{text-align:center;color:#0b46d6;font-size:clamp(32px,4vw,46px);margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
-.hp-sub{text-align:center;color:#4b5575;font-size:18px;max-width:700px;margin:0 auto 48px}
-.hp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.hp-card{background:linear-gradient(165deg,var(--t,#fff) 0%,#fff 62%)!important;display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border-radius:16px;padding:34px 24px 26px;text-decoration:none;color:inherit;border:1px solid #eef1fa;box-shadow:0 6px 22px rgba(15,30,80,.12);transition:.25s}
-.hp-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,70,214,.2);border-color:var(--a,#cfdcff)}
-.hp-logo{display:flex;align-items:center;gap:10px;margin-bottom:22px;min-height:54px}
-.hp-logo i{width:50px;height:50px;border-radius:14px;background:var(--a,#0b46d6);color:#fff;display:grid;place-items:center;font-style:normal;font-size:24px;box-shadow:0 8px 18px rgba(11,70,214,.3)}
-.hp-logo b{font:800 22px/1 "Sora",sans-serif;color:#0a1a4a;letter-spacing:-.01em}
-.hp-logo b span{color:#0b46d6}
-.hp-card p{margin:0;font-size:16px;line-height:1.8;color:#4b5575;flex:1}
-.hp-go{margin-top:18px;font-weight:700;font-size:14px;color:var(--a,#0b46d6)}
-@media (max-width:1100px){.hp-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.hp-grid{grid-template-columns:1fr}}
-`;
 function ModuleGrid() {
   return (
     <section className="hp">
-      <style>{MOD_CSS}</style>
       <div className="hp-w">
         <h2>Our Products</h2>
         <p className="hp-sub">One Mosbee product, eight modules. Use the complete solution or choose only the modules your business needs.</p>
@@ -665,39 +412,6 @@ const BENEFITS = [
   ["Robust security", "Role-based access and careful handling of your data keep sensitive information protected, so each person sees only what they should."],
   ["Continuous support", "We train your team and stay with you after launch with updates, maintenance and help whenever you need it."],
 ];
-const BEN_CSS = `
-.bn{position:relative;padding:100px 0 110px;background:linear-gradient(180deg,#fff 0%,#eef4ff 18%,#eef4ff 82%,#fff 100%)}
-.bn-w{max-width:1240px;margin:0 auto;padding:0 24px}
-.bn h2{text-align:center;font-size:clamp(32px,4.2vw,52px);color:#0a1a4a;margin:0 0 12px;font-weight:800;letter-spacing:-.02em}
-.bn-sub{text-align:center;color:#4b5575;font-size:18px;max-width:680px;margin:0 auto 44px}
-.bn-row{display:flex;gap:18px;height:520px;margin-bottom:26px}
-.bn-it{position:relative;overflow:hidden;background:#fff;border-radius:44px;border:2px solid #dbe8ff;box-shadow:0 8px 26px rgba(11,70,214,.08);cursor:pointer;transition:flex-basis .55s cubic-bezier(.3,.7,.2,1),box-shadow .3s;flex:0 0 78px}
-.bn-it:hover{box-shadow:0 14px 34px rgba(11,70,214,.18)}
-.bn-it.on{flex:1 1 0;cursor:default;border-radius:44px}
-.bn-tab{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:18px;padding:0 0 18px;transition:opacity .25s}
-.bn-tab span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 19px "Sora","Plus Jakarta Sans",sans-serif;color:#0b46d6;white-space:nowrap}
-.bn-n{flex:none;width:48px;height:48px;border-radius:50%;background:#f1f3f8;color:#0a1a4a;display:grid;place-items:center;font:700 18px "Sora",sans-serif}
-.bn-it.on .bn-tab{opacity:0;pointer-events:none}
-.bn-open{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;opacity:0;pointer-events:none;transition:opacity .35s ease}
-.bn-it.on .bn-open{opacity:1;pointer-events:auto;transition-delay:.25s}
-.bn-img{background-size:cover;background-position:center;border-radius:42px 0 0 42px;position:relative}
-.bn-img b{position:absolute;left:20px;top:20px;width:46px;height:46px;border-radius:50%;background:#fff;color:#0b46d6;display:grid;place-items:center;font:800 17px "Sora",sans-serif;box-shadow:0 6px 16px rgba(0,0,0,.18)}
-.bn-txt{display:flex;flex-direction:column;justify-content:center;padding:30px 44px 30px 38px;min-width:0}
-.bn .bn-txt h3{margin:0 0 14px;font-size:clamp(24px,2.4vw,32px);color:#0b46d6;font-weight:700;line-height:1.2}
-.bn-txt p{margin:0;font-size:17px;line-height:1.85;color:#1c2340}
-@media (max-width:860px){
-  .bn-row{flex-direction:column;height:auto}
-  .bn-it{flex:0 0 66px!important;border-radius:33px;transition:flex-basis .5s}
-  .bn-it.on{flex:0 0 auto!important}
-  .bn-tab{flex-direction:row-reverse;justify-content:flex-end;align-items:center;padding:0 9px;gap:14px}
-  .bn-tab span{writing-mode:horizontal-tb;transform:none;font-size:17px}
-  .bn-n{width:46px;height:46px}
-  .bn-it.on{height:auto}
-  .bn-open{position:relative;grid-template-columns:1fr}
-  .bn-img{min-height:210px;border-radius:30px 30px 0 0}
-  .bn-txt{padding:24px 22px 28px}
-}
-`;
 function BenefitRow({ start }) {
   const [a, setA] = useState(0);
   const items = BENEFITS.slice(start, start + 5);
@@ -721,7 +435,6 @@ function BenefitRow({ start }) {
 function Benefits() {
   return (
     <section className="bn">
-      <style>{BEN_CSS}</style>
       <div className="bn-w">
         <h2>Benefits of Mosbee</h2>
         <p className="bn-sub">One integrated product that is simple to use, flexible to buy and built to grow with your business.</p>
@@ -732,48 +445,251 @@ function Benefits() {
   );
 }
 
-const SOFT_CSS = `
-.soft{position:relative;background:
-  radial-gradient(640px 520px at 6% 7%,rgba(255,200,0,.13),transparent 70%),
-  radial-gradient(720px 600px at 96% 13%,rgba(47,107,255,.12),transparent 70%),
-  radial-gradient(680px 560px at 4% 36%,rgba(124,77,255,.10),transparent 70%),
-  radial-gradient(720px 600px at 97% 50%,rgba(16,163,106,.09),transparent 70%),
-  radial-gradient(680px 560px at 3% 68%,rgba(232,69,122,.08),transparent 70%),
-  radial-gradient(720px 600px at 95% 88%,rgba(10,165,200,.11),transparent 70%),#fff}
-.soft .hi{background:transparent}
-.soft .bn{background:linear-gradient(180deg,rgba(255,255,255,0),rgba(236,243,255,.75) 20%,rgba(236,243,255,.75) 80%,rgba(255,255,255,0))}
-.soft .sec,.soft .sec.alt{background:transparent!important}
-`;
+// ---------- Product stack: big cards that stack as you scroll ----------
+// Right-side photo for each card (put in /public; .jpg .png .jpeg all work):
+//   stack-erp, stack-accounts, stack-hrms, stack-crm, stack-pro, stack-chatbot, stack-projects, stack-tasks
+const PSTACK = [
+  { k: "erp", n: "ERP", ic: "▦", c: "#2f6bff", t: "#e4edff", to: "/erp", img: "/erp.png",
+    h: "Run every branch from one place",
+    d: "Run every branch, factory and warehouse from one command centre, with a single view of stock, purchasing and production.",
+    b: ["Multi-branch inventory with live reorder alerts", "Procurement, GRN and vendor scorecards", "Job, batch and shop-floor production control", "Reports and dashboards for every branch"],
+    s: [["Multi-branch", "inventory and reorder alerts"], ["GRN", "goods receipt and vendor scorecards"], ["Production", "job, batch and shop-floor"]] },
+  { k: "accounts", n: "Accounts & POS", ic: "₹", c: "#10a36a", t: "#e1f5ea", to: "/accounting", img: "/accounting.png",
+    h: "Accounting and billing, together",
+    d: "Accounting and POS billing in one system: fast counter checkout, GST invoicing, ledgers and reconciliation built in.",
+    b: ["POS counter billing, barcode scan and instant receipts", "Double-entry ledgers, GST invoices, e-invoice and e-way bill", "Cash register, UPI and bank reconciliation", "TDS and a complete audit trail"],
+    s: [["POS", "barcode scan and receipts"], ["GST", "invoice, e-invoice, e-way bill"], ["Ledgers", "double-entry and reconciliation"]] },
+  { k: "hrms", n: "HRMS", ic: "☺", c: "#7c4dff", t: "#ece6ff", to: "/hrms", img: "/hrms.png",
+    h: "Payroll day without the panic",
+    d: "From attendance to PF, ESI and TDS, keep every people process accurate and on time.",
+    b: ["Attendance, shifts, leave and holiday calendars", "Payslips, PF, ESI and TDS with self-service", "Onboarding, appraisals and org charts", "Recruitment in the same place"],
+    s: [["Attendance", "shifts and leave"], ["Payroll", "PF, ESI and TDS"], ["Self-service", "payslips for staff"]] },
+  { k: "crm", n: "CRM", ic: "↗", c: "#e8457a", t: "#ffe6ee", to: "/contact", img: "",
+    h: "Every lead, followed up",
+    d: "Every lead captured, scored and followed up automatically, with a clear pipeline from first enquiry to closed deal.",
+    b: ["Lead capture from web, ads and WhatsApp", "Visual pipeline with revenue forecast", "Quotes, handoffs and automated follow-ups", "Complete customer history in one place"],
+    s: [["Leads", "web, ads and WhatsApp"], ["Pipeline", "visual, with forecast"], ["Follow-ups", "automated"]] },
+  { k: "pro", n: "PRO", ic: "★", c: "#e89a00", t: "#fff0d2", to: "/pro-solutions", img: "",
+    h: "Never miss a renewal",
+    d: "The power tier for document tracking and renewals, so licences, IDs and permits are always planned ahead.",
+    b: ["Document and expiry tracking", "Renewal reminders for licences, IDs and permits", "Clear status: valid, expiring soon, expired", "Plan upcoming renewals in advance"],
+    s: [["Expiry", "tracking and alerts"], ["Renewals", "planned ahead"], ["Documents", "licences, IDs and permits"]] },
+  { k: "chatbot", n: "Chatbot", ic: "✉", c: "#0aa5c8", t: "#dff4fa", to: "/chatbot", img: "/chatbot.png",
+    h: "Answer customers instantly",
+    d: "Answer customers instantly on your website and apps, capture leads and hand over to your team when it matters.",
+    b: ["Smart replies on your website and apps", "Lead capture and customer details", "Integrations with the tools you already use", "Smooth hand-over to your team"],
+    s: [["Smart replies", "on web and apps"], ["Leads", "captured in chat"], ["Integrations", "with your tools"]] },
+  { k: "projects", n: "Projects", ic: "◫", c: "#14a89a", t: "#dcf5f1", to: "/project-management", img: "",
+    h: "Deliver projects on time",
+    d: "Plan, track and deliver projects on time, with timelines, team collaboration and progress reports.",
+    b: ["Timelines and milestones", "Team collaboration in one place", "Progress reports at a glance", "A clear view of every project"],
+    s: [["Timelines", "plan and track"], ["Teams", "work together"], ["Reports", "progress at a glance"]] },
+  { k: "tasks", n: "Tasks", ic: "☑", c: "#f0742a", t: "#ffe9db", to: "/task-management", img: "",
+    h: "Finish the day's work",
+    d: "Assign, follow up and finish daily work, with reminders, priorities and a clear view of who is doing what.",
+    b: ["Assign and follow up tasks", "Reminders and priorities", "A simple board for the whole team", "Status of every task at a glance"],
+    s: [["Assign", "to your team"], ["Reminders", "never miss a task"], ["Priorities", "know what is next"]] },
+];
+function ProductStack() {
+  const refs = useRef([]);
+  useEffect(() => {
+    const els = refs.current.filter(Boolean);
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      els.forEach((el, i) => {
+        const nx = els[i + 1];
+        if (!nx) return;
+        const stuck = parseFloat(getComputedStyle(nx).top) || 0;
+        const d = nx.getBoundingClientRect().top - stuck;
+        const p = Math.max(0, Math.min(1, 1 - d / el.offsetHeight));
+        el.style.setProperty("--p", p.toFixed(3));
+      });
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", on, { passive: true });
+    window.addEventListener("resize", on);
+    return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+  return (
+    <section className="ps2">
+      <div className="ps2-w">
+        <div className="ps2-head">
+          <span className="ps2-k">THE MOSBEE PLATFORM</span>
+          <h2>One product. Every module. Built to work together.</h2>
+          <p className="ps2-sub">Run the complete solution, or choose only the modules your business needs today.</p>
+        </div>
+        <div className="ps2-list">
+          {PSTACK.map((m, i) => (
+            <article key={m.k} ref={(el) => (refs.current[i] = el)} className="ps2-card" style={{ "--i": i, "--c": "#0b46d6", "--t": "#f6f7fb" }}>
+              <div className="ps2-img" aria-hidden="true">
+                <Pic names={[...exts("/stack-" + m.k), ...(m.img ? [m.img] : [])]} fallback={<div className="ps2-fb"><span>Add photo: stack-{m.k}.jpg</span></div>} />
+              </div>
+              <div className="ps2-body">
+                <span className="ps2-kick">{m.n}</span>
+                <h3>{m.h}</h3>
+                <p>{m.d}</p>
+                <ul>{m.b.map((x) => <li key={x}>{x}</li>)}</ul>
+                <div className="ps2-tiles">
+                  {m.s.map(([a, b], j) => <div key={a} className={"ps2-tile t" + (j + 1)}><b>{a}</b><span>{b}</span></div>)}
+                </div>
+              </div>
+              <div className="ps2-cta">
+                {m.to !== "/contact" && <Link className="ps2-btn alt" to={m.to}>Explore {m.n}</Link>}
+                <Link className="ps2-btn" to="/contact">Request a demo</Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const dsvg = (d) => (
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{d}</svg>
+);
+const DRIVE_VALUES = [
+  ["01", dsvg(<><path d="M9 18h6M10 21h4" /><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z" /></>), "Innovation", "Fresh ideas that turn into real results."],
+  ["02", dsvg(<><circle cx="12" cy="9" r="5" /><path d="M8.5 13.5 7 21l5-3 5 3-1.5-7.5" /></>), "Quality", "Built carefully, tested before it ships."],
+  ["03", dsvg(<><path d="M4 18a8 8 0 1 1 16 0" /><path d="M12 18l4-6" /></>), "Performance", "Fast, smooth systems that keep up with you."],
+  ["04", dsvg(<><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /><path d="m9 12 2 2 4-4" /></>), "Reliability", "Dependable software you can count on daily."],
+  ["05", dsvg(<><path d="M3 12l4-4 4 3 4-3 6 5" /><path d="m7 16 3 3 2-2 3 2 3-3" /></>), "Partnership", "We grow with you, long after launch."],
+];
+function DriveSection() {
+  return (
+    <section className="dr">
+      <div className="dr-w">
+        <div className="dr-grid">
+          <div className="dr-text">
+            <h2>One platform for<br /><span>every part of your business</span></h2>
+            <p>Mosbee is a leading business software company serving clients across the globe. We help businesses transform their operations through one integrated management solution.</p>
+            <p>We specialize in ERP, accounting and POS, HR, CRM, PRO services, chatbots, project and task management. Our solutions are seamless, efficient, and tailored to meet specific business needs.</p>
+            <p>Driven by innovation, quality, and performance, we deliver intelligent, tailored digital systems that support sustainable growth and help organizations stay ahead in competitive markets.</p>
+          </div>
+          <div className="dr-img">
+            <div className="dr-fx">
+              <Pic names={exts("/drive-side")} fallback={<div className="dr-fb"><span>Add image: drive-side.png</span></div>} />
+              <svg className="dr-bolt" viewBox="0 0 1017 1016" aria-hidden="true">
+                <defs>
+                  <clipPath id="drScr"><rect x="119" y="26" width="765" height="471" /></clipPath>
+                  <linearGradient id="drShine" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#fff" stopOpacity="0" /><stop offset=".5" stopColor="#9fd0ff" stopOpacity=".38" /><stop offset="1" stopColor="#fff" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                {/* screen glow + light sweep */}
+                <rect className="dr-edge" x="117" y="24" width="769" height="475" rx="6" />
+                <g clipPath="url(#drScr)"><rect className="dr-sweep" x="-260" y="0" width="240" height="1016" fill="url(#drShine)" transform="skewX(-18)" /></g>
+                {/* power running through the blue cable */}
+                <path className="dr-cable" d="M578 872 L576 930 L582 1000" />
+                <path className="dr-cable dr-cable2" d="M578 872 L576 930 L582 1000" />
+                {/* electric arcs on the hand and wrist */}
+                <polyline className="dr-arc a1" points="470,640 488,655 480,668 505,682 497,696 522,708" />
+                <polyline className="dr-arc a2" points="640,606 628,626 640,640 626,660 638,676 624,698" />
+                <polyline className="dr-arc a3" points="545,790 560,806 548,820 568,834 556,850 576,862" />
+                <polyline className="dr-arc a4" points="410,610 424,626 414,640 432,654 424,668" />
+                <polyline className="dr-arc a5" points="520,596 540,606 532,618 556,626 548,638 572,646" />
+                {/* sparks on the joints */}
+                <circle className="dr-spark s1" cx="632" cy="648" r="7" />
+                <circle className="dr-spark s2" cx="520" cy="690" r="6" />
+                <circle className="dr-spark s3" cx="550" cy="712" r="6" />
+                <circle className="dr-spark s4" cx="624" cy="736" r="7" />
+                <circle className="dr-spark s5" cx="576" cy="868" r="6" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="dr-bar">
+          {DRIVE_VALUES.map(([n, ic, t, d]) => (
+            <div className="dr-val" key={t}>
+              <span className="dr-n">{n}</span>
+              <i>{ic}</i>
+              <b>{t}</b>
+              <p>{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const METHOD = [
+  ["Project Initiation", "During the project initiation phase, we conduct an in-depth system study to thoroughly understand your requirements. Our primary goal is to analyze and document all your needs to develop a tailored solution that ensures project success and delivers positive results."],
+  ["Project Planning", "In the project planning phase, we utilize the requirements identified during the initiation phase to create a comprehensive plan. Our team meticulously crafts this plan to ensure the project achieves its optimal target results, setting a clear roadmap for successful development and implementation."],
+  ["Project Execution", "In the project execution phase, we develop and integrate multiple crucial modules into the ERP system, tailored to meet the client\u2019s specific requirements. This step ensures that all necessary functions are effectively incorporated to achieve the project\u2019s goals and ensure its success."],
+  ["Monitoring, QA, and Controlling", "Our experienced developers carry out the implementation phase, encoding and developing the project based on client specifications. At the end of this phase, the project undergoes rigorous testing and evaluation to ensure all requirements are met, perfecting and finalizing the solution."],
+  ["Closing Project and Handing Over", "After thorough testing and development, we transfer all deliverables to the client. We provide comprehensive support, including user interface introduction, training, and implementation. Additionally, we offer ongoing customization services to meet future requirements, ensuring continuous support and adaptability for your business."],
+  ["Future Requirements and Customization Services", "We offer highly customizable ERP software solutions tailored to meet your business goals and increase ROI. Our all-in-one turnkey solutions foster long-term relationships with customers, driving disruptive innovation and continuous improvement."],
+];
+function Methodology() {
+  const [open, setOpen] = useState(0);
+  const item = (i) => {
+    const [t, d] = METHOD[i];
+    const on = open === i;
+    return (
+      <div className={"mt-item" + (on ? " on" : "")} key={t}>
+        <button type="button" className="mt-q" aria-expanded={on} onClick={() => setOpen(on ? -1 : i)}>
+          <span className="mt-n">{String(i + 1).padStart(2, "0")}</span>
+          <span className="mt-t">{t}</span>
+          <span className="mt-pl" aria-hidden="true" />
+        </button>
+        <div className="mt-a"><div><p>{d}</p></div></div>
+      </div>
+    );
+  };
+  return (
+    <section className="mt">
+      <div className="mt-w">
+        <h2>Our <span>Methodology</span></h2>
+        <p className="mt-sub">A clear six-step process, from the first conversation to long-term support.</p>
+        <div className="mt-grid">
+          <div>{[0, 1, 2].map(item)}</div>
+          <div>{[3, 4, 5].map(item)}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const PARTNERS = [
+  ["jio", "Jio"], ["meta", "Meta"], ["google", "Google"], ["linkedin", "LinkedIn"], ["tiktok", "TikTok"],
+  ["microsoft", "Microsoft"], ["godaddy", "GoDaddy"], ["hostinger", "Hostinger"], ["zoho", "Zoho"], ["facebook", "Facebook"],
+  ["whatsapp", "WhatsApp"], ["instagram", "Instagram"], ["x", "X"], ["emiratesnbd", "Emirates NBD"], ["rakbank", "RAKBANK"],
+  ["razorpay", "Razorpay"], ["gpay", "GPay"], ["upi", "UPI"], ["tally", "Tally"], ["odoo", "Odoo"],
+  ["samsung", "Samsung"], ["xiaomi", "Xiaomi"], ["apple", "Apple"], ["hikvision", "Hikvision"], ["synology", "Synology"],
+];
+const partnerImgs = (k) => [".svg", ".png", ".webp", ".jpg", ".jpeg"].map((e) => "/partners/" + k + e);
+function PartnersMarquee() {
+  const row = (suffix) => PARTNERS.map(([k, n]) => (
+    <div className="pm-item" key={k + suffix}>
+      <Pic names={partnerImgs(k)} alt={n} fallback={<span className="pm-name">{n}</span>} />
+    </div>
+  ));
+  return (
+    <section className="pm">
+      <div className="pm-head">
+        <h2>Our <span>Technology Partners</span></h2>
+        <p>Collaborating with industry leaders to deliver the best solutions.</p>
+      </div>
+      <div className="pm-view">
+        <div className="pm-track">{row("a")}{row("b")}</div>
+      </div>
+    </section>
+  );
+}
+
 const Home = () => (
   <div className="soft">
-    <style>{SOFT_CSS}</style>
     <HomeIntro />
-    <Benefits />
-    <section className="sec alt"><div className="wrap"><h2>Our services</h2><p className="sub">What we build for your business.</p><ServiceCards /></div></section>
-    <ModuleGrid />
-    <section className="sec alt wy"><div className="wrap">
-      <div className="wy-top">
-        <div>
-          <span className="tag">Why Mosbee</span>
-          <h2>Why choose Mosbee</h2>
-          <p className="sub" style={{ margin: 0 }}>Technology that is simple to use, quick to set up and backed by people who stay with you after launch.</p>
-        </div>
-        <div className="wy-stats">{STATS.map((x) => <div key={x[2]}><b>{x[1]}</b><span>{x[2]}</span></div>)}</div>
-      </div>
-      <div className="wy-grid">
-        {WHY.map((w, i) => (
-          <div className="wy-c" key={w[0]}>
-            <span className="wy-n">{String(i + 1).padStart(2, "0")}</span>
-            <div className="wy-ic">{w[2]}</div>
-            <h3>{w[0]}</h3>
-            <p>{w[1]}</p>
-          </div>
-        ))}
-      </div>
-    </div></section>
-    <Cta t="Ready to grow your business?" />
+    <DriveSection />
+    <ProductStack />
+    <Methodology />
+    <PartnersMarquee />
   </div>
 );
+
 
 // ----- small helpers used by the About page -----
 function useInView() {
@@ -844,82 +760,6 @@ const CODE = [
 ];
 const TECH = ["AI and chatbots", "ERP", "HRMS", "Accounting", "Project management", "Task management", "Web apps", "Mobile apps", "Automation", "Dashboards", "Cloud", "Integrations"];
 
-const AP_CSS = `
-.ap{position:relative;overflow:hidden;background:radial-gradient(640px 520px at 94% 30%,rgba(124,77,255,.09),transparent 70%),radial-gradient(680px 560px at 4% 48%,rgba(16,163,106,.08),transparent 70%),radial-gradient(700px 560px at 95% 70%,rgba(255,200,0,.11),transparent 70%),radial-gradient(680px 560px at 5% 88%,rgba(232,69,122,.07),transparent 70%),#fff;color:#0a0a0a;--hb:#0b46d6;--hn:#0a1a4a;--hy:#ffc800;--hm:#4b5575;--hl:#dbe3f5;--hs:#f3f6ff}
-.ap-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(720px 420px at 15% 0%,rgba(255,200,0,.18),transparent 70%),radial-gradient(820px 480px at 90% 4%,rgba(11,70,214,.14),transparent 70%),radial-gradient(900px 520px at 8% 60%,rgba(11,70,214,.07),transparent 70%)}
-.ap-w{position:relative;max-width:1200px;margin:0 auto;padding:0 24px}
-.ap-crumb{font-size:14px;color:var(--hm);margin:0 0 14px}
-.ap-crumb a{color:var(--hb);text-decoration:none;font-weight:600}
-.ap-head{text-align:center;padding-top:80px}
-.ap .ap-head h1{font-size:clamp(46px,7vw,92px);line-height:1;letter-spacing:-.03em;margin:0 0 14px;color:var(--hn);font-weight:800}
-.ap .ap-head h1 span{background:linear-gradient(90deg,#0b46d6,#5b8dff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.ap-tag{font:700 clamp(22px,2.6vw,32px)/1.2 "Sora",sans-serif;color:var(--hn);margin:0 0 16px}
-.ap-tag b{position:relative;color:var(--hb);z-index:0}
-.ap-tag b::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:9px;background:var(--hy);opacity:.55;border-radius:4px;z-index:-1}
-.ap-lead{font-size:19px;line-height:1.7;color:var(--hm);max-width:700px;margin:0 auto}
-.ap-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:46px auto 0;max-width:980px}
-.ap-stats div{background:#fff;border:1px solid var(--hl);border-radius:16px;padding:22px 12px;box-shadow:0 8px 24px rgba(11,70,214,.09)}
-.ap-stats b{display:block;font:800 clamp(28px,3.4vw,40px)/1.1 "Sora",sans-serif;color:var(--hb)}
-.ap-stats span{font-size:14px;color:var(--hm)}
-
-.ap-sec{padding-top:100px}
-.ap .ap-sec h2.ap-h{text-align:center;font-size:clamp(34px,4.4vw,56px);letter-spacing:-.02em;margin:0 0 12px;color:var(--hn);font-weight:800}
-.ap-sub{text-align:center;color:var(--hm);font-size:18px;max-width:680px;margin:0 auto 44px}
-
-/* who we are: photo + dark card */
-.ap-who{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;margin-top:44px}
-.ap-photo{min-height:470px;border-radius:30px;box-shadow:0 24px 60px rgba(11,70,214,.18);background:url(/about-side.jpg) center/cover no-repeat,url(/about-side.jpeg) center/cover no-repeat,url(/about-side.png) center/cover no-repeat,linear-gradient(135deg,#dfe8ff,#f1f5ff)}
-.ap-card{border-radius:30px;background:linear-gradient(160deg,#0a1a4a,#0b2a7a);color:#fff;padding:46px 40px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 24px 60px rgba(10,26,74,.3)}
-.ap .ap-card h3{font-size:clamp(26px,2.8vw,36px);line-height:1.2;margin:0 0 20px;font-weight:700;color:#fff}
-.ap-card p{font-size:17px;line-height:1.8;color:#c9d6f5;margin:0 0 14px}
-.ap-card p:last-child{margin:0}
-
-/* one product, many modules */
-.ap-mods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.ap-mod{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--hl);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--hn);font:700 16px "Sora",sans-serif;box-shadow:0 6px 18px rgba(11,70,214,.07);transition:.2s}
-.ap-mod:hover{transform:translateY(-3px);border-color:var(--hb);box-shadow:0 14px 30px rgba(11,70,214,.16)}
-.ap-mod i{flex:none;width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#2f7bff,#0b46d6);color:#fff;display:grid;place-items:center;font-style:normal;font-size:18px}
-.ap-note{text-align:center;color:var(--hm);margin:22px 0 0;font-size:15px}
-
-/* mission vision */
-.ap-mv{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
-.ap-mvc{position:relative;background:#fff;border:1px solid var(--hl);border-radius:22px;padding:34px 34px 34px 100px;box-shadow:0 12px 34px rgba(11,70,214,.1)}
-.ap-mvc i{position:absolute;left:30px;top:34px;width:48px;height:48px;border-radius:14px;background:var(--hy);color:#0a0a0a;display:grid;place-items:center;font-style:normal;font-size:22px;font-weight:800}
-.ap .ap-mvc h3{margin:0 0 8px;font-size:24px;color:var(--hn)}
-.ap-mvc p{margin:0;font-size:17px;line-height:1.7;color:var(--hm)}
-
-/* values */
-.ap-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.ap-val{position:relative;background:var(--hs);border:1px solid var(--hl);border-radius:20px;padding:28px 24px;transition:.25s}
-.ap-val:hover{transform:translateY(-5px);background:#fff;box-shadow:0 18px 40px rgba(11,70,214,.16)}
-.ap-val em{position:absolute;right:20px;top:16px;font:800 14px "Sora",sans-serif;color:#b6c4ec;font-style:normal}
-.ap-val i{width:52px;height:52px;border-radius:15px;background:var(--hb);color:#fff;display:grid;place-items:center;font-style:normal;font-size:24px;margin-bottom:18px}
-.ap .ap-val h3{margin:0 0 8px;font-size:20px;color:var(--hn)}
-.ap-val p{margin:0;color:var(--hm);font-size:15.5px;line-height:1.65}
-
-/* steps */
-.ap-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
-.ap-steps::before{content:"";position:absolute;left:8%;right:8%;top:30px;height:2px;background:linear-gradient(90deg,var(--hb),var(--hy));opacity:.4}
-.ap-step{position:relative;text-align:center;padding:0 8px}
-.ap-step b{width:60px;height:60px;border-radius:50%;background:#fff;border:2px solid var(--hb);color:var(--hb);display:grid;place-items:center;font:800 18px "Sora",sans-serif;margin:0 auto 18px;position:relative;box-shadow:0 8px 20px rgba(11,70,214,.18)}
-.ap .ap-step h3{margin:0 0 8px;font-size:20px;color:var(--hn)}
-.ap-step p{margin:0;color:var(--hm);font-size:15.5px;line-height:1.65}
-
-.ap-cta{margin:100px auto 0;max-width:1100px;border-radius:28px;background:linear-gradient(135deg,#0a1a4a,#0b46d6);color:#fff;text-align:center;padding:56px 24px;box-shadow:0 24px 60px rgba(10,26,74,.3)}
-.ap .ap-cta h2{color:#fff;margin:0 0 10px;font-size:clamp(28px,3.6vw,44px);font-weight:800}
-.ap-cta p{color:#c9d6f5;margin:0 0 26px;font-size:18px}
-.ap-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.ap-btn{display:inline-block;padding:15px 28px;border-radius:10px;font:700 16px "Sora",sans-serif;text-decoration:none;border:1.5px solid transparent;transition:.2s}
-.ap-pri{background:var(--hy);color:#0a0a0a}.ap-pri:hover{transform:translateY(-2px);background:#ffd633}
-.ap-ghost{color:#fff;border-color:rgba(255,255,255,.7)}.ap-ghost:hover{background:rgba(255,255,255,.12)}
-.ap-bot{height:110px}
-
-.ap-rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
-.ap-rv.in{opacity:1;transform:none}
-
-@media (max-width:1000px){.ap-stats,.ap-vals,.ap-steps,.ap-mods{grid-template-columns:repeat(2,1fr)}.ap-steps::before{display:none}.ap-who,.ap-mv{grid-template-columns:1fr}.ap-photo{min-height:300px}}
-@media (max-width:560px){.ap-stats,.ap-vals,.ap-steps,.ap-mods{grid-template-columns:1fr}.ap-head{padding-top:50px}.ap-card{padding:34px 26px}.ap-mvc{padding:90px 26px 28px}}
-`;
 
 function ApRv({ children, d = 0 }) {
   const [ref, seen] = useInView();
@@ -934,7 +774,6 @@ const About = () => {
   }, []);
   return (
     <div className="ap">
-      <style>{AP_CSS}</style>
       <div className="ap-glow" aria-hidden="true" />
 
       {/* intro */}
