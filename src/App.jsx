@@ -212,7 +212,7 @@ const DOTS = [6, 14, 22, 31, 40, 49, 58, 67, 76, 84, 92];
 function Pic({ names, fallback, alt = "" }) {
   const [k, setK] = useState(0);
   if (k >= names.length) return fallback;
-  return <img src={names[k]} alt={alt} onError={() => setK(k + 1)} />;
+  return <img src={names[k]} alt={alt} decoding="async" onError={() => setK(k + 1)} />;
 }
 const exts = (base) => [base + ".png", base + ".jpg", base + ".jpeg"];
 
@@ -491,27 +491,6 @@ const PSTACK = [
     s: [["Assign", "to your team"], ["Reminders", "never miss a task"], ["Priorities", "know what is next"]] },
 ];
 function ProductStack() {
-  const refs = useRef([]);
-  useEffect(() => {
-    const els = refs.current.filter(Boolean);
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      els.forEach((el, i) => {
-        const nx = els[i + 1];
-        if (!nx) return;
-        const stuck = parseFloat(getComputedStyle(nx).top) || 0;
-        const d = nx.getBoundingClientRect().top - stuck;
-        const p = Math.max(0, Math.min(1, 1 - d / el.offsetHeight));
-        el.style.setProperty("--p", p.toFixed(3));
-      });
-    };
-    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", on, { passive: true });
-    window.addEventListener("resize", on);
-    return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
-  }, []);
   return (
     <section className="ps2">
       <div className="ps2-w">
@@ -522,7 +501,7 @@ function ProductStack() {
         </div>
         <div className="ps2-list">
           {PSTACK.map((m, i) => (
-            <article key={m.k} ref={(el) => (refs.current[i] = el)} className="ps2-card" style={{ "--i": i, "--c": "#0b46d6", "--t": "#f6f7fb" }}>
+            <article key={m.k} className="ps2-card" style={{ "--i": i, "--c": "#0b46d6", "--t": "#f6f7fb" }}>
               <div className="ps2-img" aria-hidden="true">
                 <Pic names={[...exts("/stack-" + m.k), ...(m.img ? [m.img] : [])]} fallback={<div className="ps2-fb"><span>Add photo: stack-{m.k}.jpg</span></div>} />
               </div>
@@ -531,9 +510,6 @@ function ProductStack() {
                 <h3>{m.h}</h3>
                 <p>{m.d}</p>
                 <ul>{m.b.map((x) => <li key={x}>{x}</li>)}</ul>
-                <div className="ps2-tiles">
-                  {m.s.map(([a, b], j) => <div key={a} className={"ps2-tile t" + (j + 1)}><b>{a}</b><span>{b}</span></div>)}
-                </div>
               </div>
               <div className="ps2-cta">
                 {m.to !== "/contact" && <Link className="ps2-btn alt" to={m.to}>Explore {m.n}</Link>}
@@ -820,6 +796,51 @@ function ApRv({ children, d = 0 }) {
   return <div ref={ref} className={"ap-rv" + (seen ? " in" : "")} style={{ "--d": d + "s" }}>{children}</div>;
 }
 
+const DIFF = [
+  ["Customized Solutions",
+    <><circle cx="24" cy="18" r="9" /><path d="M24 4v3M24 29v3M10 18H7M41 18h-3M14 8l2 2M34 8l-2 2" /><circle cx="24" cy="18" r="3.500" /><path d="M16 40h10l8-5M16 36h6M26 40l-3 3" /></>,
+    "Mosbee adapts to your industry and your process. Switch on only the modules you need and shape them around the way your business really runs."],
+  ["Simplifying Complexity",
+    <><rect x="6" y="8" width="36" height="32" rx="3" /><path d="M6 18h18V8M24 18v10h10M14 28h6v8M34 28v8h8M14 36h2" /></>,
+    "One shared database and simple screens bring stock, people, accounts and customers into a single clear view, without the clutter."],
+  ["Proven Productivity Gains",
+    <><path d="M10 40V26M20 40V18M30 40V30M40 40V12" /><path d="M6 40h38" /><path d="M32 8l6-4 4 6" /></>,
+    "Automated workflows and live reports cut repeated work, so your team starts saving time from the first weeks of use."],
+];
+function DiffSection() {
+  return (
+    <div className="ap-w ap-sec">
+     <div className="ap-dbox">
+      <ApRv><h2 className="ap-h">How Mosbee Makes a Difference</h2></ApRv>
+      <div className="ap-diff">
+        {DIFF.map(([t, ic, d], i) => (
+          <ApRv d={0.1 * i} key={t}>
+            <div className="ap-dc">
+              <svg viewBox="0 0 48 48" width="62" height="62" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ic}</svg>
+              <h3>{t}</h3>
+              <p>{d}</p>
+            </div>
+          </ApRv>
+        ))}
+      </div>
+     </div>
+    </div>
+  );
+}
+
+function StepsAnim() {
+  const [ref, seen] = useInView();
+  return (
+    <div ref={ref} className={"ap-steps ap-anim" + (seen ? " run" : "")} style={{ marginTop: 50 }}>
+      {STEPS.map((x, i) => (
+        <div className="ap-step" key={x[0]} style={{ "--i": i }}>
+          <b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const About = () => {
   const [w, setW] = useState(0);
   useEffect(() => {
@@ -829,6 +850,13 @@ const About = () => {
   return (
     <div className="ap">
       <div className="ap-glow" aria-hidden="true" />
+      <div className="ap-bg" aria-hidden="true">
+        {/* Optional real video: put a short looping clip at /public/about-bg.mp4 (it hides itself if the file is missing) */}
+        <video className="ap-vid" autoPlay muted loop playsInline preload="metadata" src="/about-bg.mp4" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+        <i className="ap-o ap-o1" /><i className="ap-o ap-o2" /><i className="ap-o ap-o3" />
+        <span className="ap-grid" />
+        {Array.from({ length: 16 }).map((_, k) => <b key={k} className="ap-dt" style={{ "--x": (k * 6.3 + 3) % 100 + "%", "--s": 4 + (k % 4) * 2 + "px", "--t": 9 + (k % 5) * 2.4 + "s", "--dl": -(k * 1.7) + "s" }} />)}
+      </div>
 
       {/* intro */}
       <div className="ap-w ap-head">
@@ -867,37 +895,12 @@ const About = () => {
         </ApRv>
       </div>
 
-      {/* mission + vision */}
-      <div className="ap-w ap-sec">
-        <ApRv><h2 className="ap-h">Mission and vision</h2></ApRv>
-        <div className="ap-mv">
-          <ApRv><div className="ap-mvc"><i>◎</i><h3>Our mission</h3><p>{MISSION}</p></div></ApRv>
-          <ApRv d={0.12}><div className="ap-mvc"><i>✦</i><h3>Our vision</h3><p>{VISION}</p></div></ApRv>
-        </div>
-      </div>
-
-      {/* values */}
-      <div className="ap-w ap-sec">
-        <ApRv><h2 className="ap-h">What we stand for</h2><p className="ap-sub">The values behind every product we build.</p></ApRv>
-        <div className="ap-vals">
-          {VALUES.map((v, i) => (
-            <ApRv d={0.08 * i} key={v[1]}>
-              <div className="ap-val"><em>{String(i + 1).padStart(2, "0")}</em><i>{v[0]}</i><h3>{v[1]}</h3><p>{v[2]}</p></div>
-            </ApRv>
-          ))}
-        </div>
-      </div>
+      <DiffSection />
 
       {/* how we work */}
       <div className="ap-w ap-sec">
         <ApRv><h2 className="ap-h">From idea to launch in four steps</h2></ApRv>
-        <div className="ap-steps" style={{ marginTop: 50 }}>
-          {STEPS.map((x, i) => (
-            <ApRv d={0.1 * i} key={x[0]}>
-              <div className="ap-step"><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></div>
-            </ApRv>
-          ))}
-        </div>
+        <StepsAnim />
       </div>
 
       {/* call to action */}

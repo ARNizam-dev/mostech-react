@@ -1279,3 +1279,170 @@ h1,h2,h3{letter-spacing:-.02em}
 .hc-img img{width:100%;height:100%;object-fit:cover;display:block}
 .hc-fb{font:700 16px "Manrope",sans-serif;color:#fff;border:2px dashed rgba(255,255,255,.6);border-radius:14px;padding:16px 22px}
 @media (max-width:860px){.hc{padding:150px 0 70px}.hc-w{grid-template-columns:1fr}.hc-img{justify-self:center;width:min(86%,420px)}}
+
+/* help section: fix alignment (left titles like the reference, centred sub-heading) */
+.hp .hp-sub{max-width:760px;margin:0 auto 52px;text-align:center}
+.hp h2{letter-spacing:-.02em;line-height:1.15}
+.hp-grid{align-items:stretch}
+.hp .hp-card{display:flex;flex-direction:column;text-align:left}
+.hp .hp-top{justify-content:flex-start;text-align:left}
+.hp .hp-top h3{flex:1;text-align:left}
+.hp .hp-card p{text-align:justify;max-width:none;margin:0}
+/* same fix for the other new sections' sub-headings */
+.mt .mt-sub,.pm .pm-head p{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+
+/* performance: no per-scroll transforms, shorter cards */
+.ps2-card{transform:none!important;opacity:1!important;will-change:auto;min-height:300px;margin-bottom:24px;box-shadow:0 12px 30px rgba(120,86,0,.16)!important;contain:paint}
+.ps2-body{min-height:300px;padding:30px 0 84px clamp(28px,4vw,72px)}
+.ps2-tiles{display:none}
+.ps2 h3{font-size:clamp(26px,2.4vw,36px)}
+.ps2-cta{bottom:24px}
+.ps2-img img{transform:none}
+/* skip rendering work for sections that are off screen */
+.dr,.hp,.mt,.hc,.pm,footer.ft2{content-visibility:auto;contain-intrinsic-size:auto 700px}
+@media (max-width:860px){.ps2-card{contain:none}.ps2-body{padding:8px 22px 20px;min-height:0}}
+
+/* header: neat dropdown arrow in line with the text, single underline */
+header nav .cr{display:inline-block;width:7px;height:7px;margin-left:9px;font-size:0;line-height:0;overflow:hidden;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s;vertical-align:middle}
+header nav .dd.open .cr{transform:translateY(1px) rotate(225deg)}
+header nav .l.on,header nav a.l.active,header nav a.active{box-shadow:none!important}
+
+/* About: How Mosbee makes a difference */
+.ap-diff{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+.ap-diff>div,.ap-diff .ap-rv{height:100%}
+.ap-dc{height:100%;background:#fff;border:1px solid #d9e2f5;border-radius:30px;padding:46px 34px 44px;text-align:center;transition:.3s}
+.ap-dc svg{color:#0a1a3a;margin-bottom:26px}
+.ap-dc h3{font:700 22px "Manrope",sans-serif;color:#0a1a3a;margin:0 0 16px;letter-spacing:-.01em}
+.ap-dc p{margin:0;font-size:16.5px;line-height:1.8;color:#44506f}
+.ap-dc:hover{transform:translateY(-6px);border-color:#0b46d6;box-shadow:0 22px 50px rgba(11,70,214,.14)}
+.ap-dc:hover svg{color:#0b46d6}
+@media (max-width:900px){.ap-diff{grid-template-columns:1fr}}
+
+/* About page: moving background (works without a video; a real clip is used if /about-bg.mp4 exists) */
+.ap-bg{position:absolute;left:0;right:0;top:0;height:780px;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}
+.ap-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28}
+.ap-o{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
+.ap-o1{width:560px;height:560px;left:-120px;top:-140px;background:rgba(11,70,214,.30);animation:apDrift1 16s ease-in-out infinite}
+.ap-o2{width:520px;height:520px;right:-100px;top:-60px;background:rgba(41,182,255,.28);animation:apDrift2 19s ease-in-out infinite}
+.ap-o3{width:420px;height:420px;left:38%;top:260px;background:rgba(255,200,0,.22);animation:apDrift3 22s ease-in-out infinite}
+.ap-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(11,70,214,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(11,70,214,.10) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 50% 30%,#000,transparent 75%);animation:apGrid 14s linear infinite}
+.ap-dt{position:absolute;left:var(--x);bottom:-10px;width:var(--s);height:var(--s);border-radius:50%;background:#0b46d6;opacity:0;animation:apRise var(--t) linear var(--dl) infinite}
+.ap-dt:nth-of-type(3n){background:#ffc800}
+@keyframes apDrift1{0%,100%{transform:translate(0,0)}50%{transform:translate(160px,90px)}}
+@keyframes apDrift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-170px,110px)}}
+@keyframes apDrift3{0%,100%{transform:translate(0,0)}50%{transform:translate(-140px,-70px)}}
+@keyframes apGrid{to{background-position:56px 56px}}
+@keyframes apRise{0%{transform:translateY(0);opacity:0}15%{opacity:.55}85%{opacity:.35}100%{transform:translateY(-760px);opacity:0}}
+.ap-head,.ap-w{position:relative;z-index:1}
+.ap .ap-stats b{font-size:clamp(30px,3.4vw,42px)!important;color:#0b46d6}
+@media (prefers-reduced-motion:reduce){.ap-o,.ap-grid,.ap-dt{animation-duration:60s}}
+
+/* ===================== About page, professional layout ===================== */
+.ab3{background:#fff;color:#1c2236;font-family:"Inter",system-ui,sans-serif}
+.ab3-w{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.ab3 h1,.ab3 h2,.ab3 h3{font-family:"Manrope","Inter",sans-serif}
+.ab3-hero{position:relative;background:linear-gradient(115deg,#06124a 0%,#0a2a93 55%,#0b46d6 100%);color:#fff;padding:96px 0 150px;overflow:hidden}
+.ab3-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 80% 20%,#000,transparent 75%);mask-image:radial-gradient(ellipse 70% 90% at 80% 20%,#000,transparent 75%)}
+.ab3-hero::after{content:"";position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,0,.35),transparent 65%)}
+.ab3-hero-in{position:relative;z-index:1;max-width:1240px}
+.ab3-crumb{font-size:14px;color:rgba(255,255,255,.7);margin:0 0 22px}
+.ab3-crumb a{color:#ffc800;text-decoration:none;font-weight:600}
+.ab3-hero h1{font:800 clamp(40px,5.4vw,72px)/1.05 "Manrope",sans-serif;letter-spacing:-.03em;margin:0 0 22px;color:#fff}
+.ab3-hero h1 span{color:#ffc800}
+.ab3-lead{max-width:640px;font-size:clamp(17px,1.5vw,20px);line-height:1.7;color:rgba(255,255,255,.85);margin:0 0 34px}
+.ab3-btns{display:flex;flex-wrap:wrap;gap:14px}
+.ab3-btn{display:inline-block;padding:15px 28px;border-radius:10px;font:700 15.5px "Manrope",sans-serif;text-decoration:none;transition:.25s}
+.ab3-pri{background:#ffc800;color:#0a1a4a}.ab3-pri:hover{background:#ffd84a;transform:translateY(-2px)}
+.ab3-ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff}.ab3-ghost:hover{background:#fff;color:#0a1a4a}
+.ab3-stats{position:relative;z-index:2;margin-top:-76px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(10,26,74,.16);border:1px solid #e3e9f7}
+.ab3-stats div{padding:34px 20px;text-align:center;border-left:1px solid #e8edf8}
+.ab3-stats div:first-child{border-left:0}
+.ab3-stats b{display:block;font:800 clamp(30px,3.4vw,46px)/1.1 "Manrope",sans-serif;color:#0b46d6;letter-spacing:-.02em}
+.ab3-stats span{display:block;margin-top:8px;font-size:15px;color:#5b6682;font-weight:500}
+.ab3-sec{padding:100px 0}
+.ab3-alt{background:#f5f8ff}
+.ab3-eyebrow{display:inline-block;font:700 13px "Manrope",sans-serif;letter-spacing:.2em;color:#0b46d6;margin-bottom:14px}
+.ab3 h2{font:800 clamp(28px,3.4vw,44px)/1.15 "Manrope",sans-serif;letter-spacing:-.025em;color:#0a1a3a;margin:0 0 20px}
+.ab3-head{text-align:center;max-width:760px;margin:0 auto 52px}
+.ab3-head p{margin:0;font-size:18px;color:#5b6682;line-height:1.7}
+.ab3-who{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+.ab3-p{font-size:17.5px;line-height:1.8;color:#3b4560;margin:0 0 16px}
+.ab3-ticks{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
+.ab3-ticks li{position:relative;padding-left:34px;font-weight:600;font-size:16.5px;color:#0a1a3a}
+.ab3-ticks li::before{content:"\2713";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:50%;background:#ffc800;color:#0a1a4a;display:grid;place-items:center;font-size:13px;font-weight:800}
+.ab3-photo{position:relative;aspect-ratio:4/3.3;border-radius:22px;background:linear-gradient(135deg,#dbe6ff,#f1f5ff)}
+.ab3-photo img{width:100%;height:100%;object-fit:cover;border-radius:22px;display:block;box-shadow:0 30px 70px rgba(10,26,74,.2)}
+.ab3-photo-fb{position:absolute;inset:0;display:grid;place-items:center;border-radius:22px;border:2px dashed #b9c8ea}
+.ab3-photo-fb span{font:600 15px "Manrope",sans-serif;color:#6b7694}
+.ab3-badge{position:absolute;left:-26px;bottom:-26px;background:#0a1a4a;color:#fff;border-radius:16px;padding:20px 26px;box-shadow:0 20px 44px rgba(10,26,74,.3)}
+.ab3-badge b{display:block;font:800 34px/1 "Manrope",sans-serif;color:#ffc800;margin-bottom:6px}
+.ab3-badge span{font-size:14px;opacity:.9}
+.ab3-mods{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ab3-mod{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #dfe6f6;border-radius:14px;padding:22px;text-decoration:none;color:#0a1a3a;font:700 17px "Manrope",sans-serif;transition:.25s}
+.ab3-mod i{flex:none;width:46px;height:46px;border-radius:12px;background:#0a1a4a;color:#ffc800;display:grid;place-items:center;font-style:normal;font-size:20px}
+.ab3-mod span{flex:1}
+.ab3-mod em{font-style:normal;color:#9aa8cc;transition:.25s}
+.ab3-mod:hover{transform:translateY(-4px);border-color:#0b46d6;box-shadow:0 16px 36px rgba(11,70,214,.14)}
+.ab3-mod:hover em{color:#0b46d6;transform:translateX(4px)}
+.ab3-note{text-align:center;margin:30px 0 0;color:#6b7694;font-size:15px}
+.ab3-diff{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.ab3-diff .ap-rv{height:100%}
+.ab3-dc{height:100%;background:#fff;border:1px solid #dfe6f6;border-radius:20px;padding:42px 34px;text-align:center;transition:.3s}
+.ab3-dc svg{color:#0b46d6;margin-bottom:22px}
+.ab3-dc h3{font:700 21px "Manrope",sans-serif;color:#0a1a3a;margin:0 0 14px}
+.ab3-dc p{margin:0;font-size:16.5px;line-height:1.75;color:#4a5573}
+.ab3-dc:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(11,70,214,.14);border-color:#0b46d6}
+.ab3-mv{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.ab3-mv .ap-rv{height:100%}
+.ab3-mvc{height:100%;border-radius:22px;padding:46px 44px}
+.ab3-mvc i{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;font-style:normal;font-size:26px;margin-bottom:22px}
+.ab3-mvc h3{font:800 26px "Manrope",sans-serif;margin:0 0 12px}
+.ab3-mvc p{margin:0;font-size:18px;line-height:1.7}
+.ab3-dark{background:linear-gradient(135deg,#06124a,#0b46d6);color:#fff}.ab3-dark i{background:#ffc800;color:#0a1a4a}.ab3-dark h3{color:#fff}.ab3-dark p{color:rgba(255,255,255,.88)}
+.ab3-light{background:linear-gradient(135deg,#fff,#fff3c4);border:1px solid #f1e3a6;color:#0a1a3a}.ab3-light i{background:#0a1a4a;color:#ffc800}.ab3-light p{color:#3b4560}
+.ab3-vals{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ab3-vals .ap-rv{height:100%}
+.ab3-val{height:100%;background:#fff;border-radius:16px;padding:34px 28px;border-top:4px solid #0b46d6;box-shadow:0 10px 30px rgba(10,26,74,.07)}
+.ab3-val em{display:block;font:800 40px/1 "Manrope",sans-serif;font-style:normal;color:#dfe6f6;margin-bottom:18px}
+.ab3-val h3{font:700 20px "Manrope",sans-serif;color:#0a1a3a;margin:0 0 10px}
+.ab3-val p{margin:0;font-size:16px;line-height:1.65;color:#4a5573}
+.ab3-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ab3-steps::before{content:"";position:absolute;left:8%;right:8%;top:26px;height:2px;background:linear-gradient(90deg,#0b46d6,#ffc800)}
+.ab3-step{position:relative;text-align:center;padding:0 10px}
+.ab3-step b{position:relative;z-index:1;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;margin:0 auto 22px;background:#0a1a4a;color:#ffc800;font:800 17px "Manrope",sans-serif;box-shadow:0 0 0 8px #fff}
+.ab3-step h3{font:700 21px "Manrope",sans-serif;color:#0a1a3a;margin:0 0 10px}
+.ab3-step p{margin:0;font-size:16px;line-height:1.65;color:#4a5573}
+.ab3-cta{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;background:linear-gradient(115deg,#06124a,#0b46d6);border-radius:24px;padding:54px clamp(28px,5vw,64px);margin:0 auto 100px;color:#fff}
+.ab3-cta h2{color:#fff;margin:0 0 10px}
+.ab3-cta p{margin:0;font-size:18px;color:rgba(255,255,255,.85)}
+@media (max-width:1000px){.ab3-stats,.ab3-vals,.ab3-mods{grid-template-columns:repeat(2,1fr)}.ab3-stats div:nth-child(3){border-left:0}.ab3-stats div:nth-child(n+3){border-top:1px solid #e8edf8}.ab3-who,.ab3-mv,.ab3-diff{grid-template-columns:1fr}.ab3-steps{grid-template-columns:repeat(2,1fr);row-gap:40px}.ab3-steps::before{display:none}.ab3-badge{left:16px}}
+@media (max-width:600px){.ab3-hero{padding:64px 0 120px}.ab3-sec{padding:70px 0}.ab3-stats,.ab3-vals,.ab3-mods,.ab3-steps{grid-template-columns:1fr}.ab3-stats div{border-left:0!important;border-top:1px solid #e8edf8}.ab3-stats div:first-child{border-top:0}.ab3-mvc{padding:34px 26px}}
+
+/* How Mosbee makes a difference: one blue outer box around the three cards */
+.ap-dbox{position:relative;overflow:hidden;background:linear-gradient(135deg,#06124a 0%,#0a2a93 55%,#0b46d6 100%);border-radius:36px;padding:64px clamp(22px,4vw,56px) 60px;box-shadow:0 30px 70px rgba(10,26,74,.28)}
+.ap-dbox::before{content:"";position:absolute;right:-140px;top:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,0,.28),transparent 65%);pointer-events:none}
+.ap-dbox::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 85% 10%,#000,transparent 70%);mask-image:radial-gradient(ellipse 70% 80% at 85% 10%,#000,transparent 70%);pointer-events:none}
+.ap-dbox>*{position:relative;z-index:1}
+.ap .ap-sec .ap-dbox h2.ap-h{color:#fff;margin-bottom:44px}
+.ap-dbox .ap-diff{margin-top:0}
+.ap-dbox .ap-dc{background:#fff;border:0;box-shadow:0 18px 40px rgba(0,0,0,.2)}
+.ap-dbox .ap-dc:hover{box-shadow:0 26px 54px rgba(0,0,0,.3);border:0}
+.ap-dbox .ap-dc svg{color:#0b46d6}
+.ap-dbox .ap-dc:hover svg{color:#0a1a3a}
+@media (max-width:700px){.ap-dbox{border-radius:26px;padding:46px 18px 40px}}
+
+/* animated process steps: line draws itself, circles pop in one by one, a light travels along the line */
+.ap-anim::before{opacity:.3;transform:scaleX(0);transform-origin:left center;transition:transform 2s ease .1s}
+.ap-anim.run::before{transform:scaleX(1)}
+.ap-anim::after{content:"";position:absolute;left:8%;top:25px;width:12px;height:12px;border-radius:50%;background:#ffc800;box-shadow:0 0 14px 4px rgba(255,200,0,.7);opacity:0}
+.ap-anim.run::after{animation:apTravel 4.2s ease-in-out 2.2s infinite}
+.ap-anim .ap-step{opacity:0;transform:translateY(22px)}
+.ap-anim.run .ap-step{animation:apStepIn .6s ease both;animation-delay:calc(var(--i)*.5s)}
+.ap-anim .ap-step b{transform:scale(.4);transition:background .3s,color .3s}
+.ap-anim.run .ap-step b{animation:apPop .55s cubic-bezier(.3,1.7,.5,1) both,apRing 2.6s ease-out infinite;animation-delay:calc(var(--i)*.5s),calc(var(--i)*.5s + 1.4s)}
+.ap-anim .ap-step:hover b{background:#0b46d6;color:#fff}
+@keyframes apStepIn{to{opacity:1;transform:none}}
+@keyframes apPop{from{transform:scale(.4)}to{transform:scale(1)}}
+@keyframes apRing{0%{box-shadow:0 8px 20px rgba(11,70,214,.18),0 0 0 0 rgba(11,70,214,.35)}70%,100%{box-shadow:0 8px 20px rgba(11,70,214,.18),0 0 0 16px rgba(11,70,214,0)}}
+@keyframes apTravel{0%{left:8%;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(92% - 12px);opacity:0}}
+@media (max-width:1000px){.ap-anim::after{display:none}}
